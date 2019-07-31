@@ -3,12 +3,14 @@ import React, { Component } from 'react'
 function CampusView(props) {
     return (
         <div>
-            <p>{props.title}</p>
+            <p>{props.name}</p>
             <img src={props.imageURL} />
             <p>{props.address}</p>
             <p>{props.description}</p>
-            <button>LINK TO EDIT</button>
-            <button>LINK AND FUNCTION TO DELETE</button>
+            <p>Students on campus:</p>
+            {/* INSERT STUDENT CARDS OVER (possibly via map?) HERE WITH A PROP SENDING TO CORRECT STUDENTS */}
+            <button>FUTURE LINK TO EDIT</button>
+            <button>FUTURE LINK AND FUNCTION TO DELETE</button>
         </div>
     )
 }
