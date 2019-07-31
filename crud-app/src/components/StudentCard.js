@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import './StudentCard.css';
 
-class StudentCard extends Componet{
+class StudentCard extends Component{
 	render(){
 		return(
 			<div className="studentInfo">
 				<div className="studentImage">
-					<img src={this.props.imageLink} alt="Picture of the Student" />
+					<img src={this.props.imageLink} alt="Student Pic" />
 				</div>
 				<div className="studentName">
 					{this.props.name}
