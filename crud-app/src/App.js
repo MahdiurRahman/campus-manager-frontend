@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header.js';
+import StudentGrid from './components/StudentGrid.js';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 class App extends React.Component{
   constructor(props)
@@ -84,9 +86,17 @@ class App extends React.Component{
   }
 
   render(){
+    const StudentGridComponent = () => (<StudentGrid students={this.state.students} />);
+    const HeaderComponent = () => (<Header />);
+
     return(
       <div id="app">
-        <Header />
+        <Router>
+          <Switch>
+            <Route exact path = "/" render={HeaderComponent} />
+            <Route exact path = "/students" component={StudentGridComponent} />
+          </Switch>
+        </Router>
       </div>
     )
   }
