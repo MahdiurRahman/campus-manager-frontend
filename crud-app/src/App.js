@@ -109,7 +109,8 @@ class App extends React.Component{
           img={this.state.students[match.params.id].img}
           gpa={this.state.students[match.params.id].gpa} />
       )
-    }
+          }
+
     const CampusViewComponent = ({match}) => (<CampusView campus={this.state.campuses[match.params.id]}/>)
 
         return(
