@@ -12,7 +12,7 @@ class StudentCard extends Component{
 					{this.props.name}
 				</div>
 				<div className="campusName">
-					{this.props.campusName}
+					{this.props.getCampusName(this.props.campusId)}
 				</div>
 			</div>
 		);

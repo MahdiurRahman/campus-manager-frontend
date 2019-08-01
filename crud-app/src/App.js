@@ -98,9 +98,17 @@ class App extends React.Component{
     }
   }
 
+  getCorrespondingCampusName = (campusId) =>{
+  	for (let i = 0; i < this.state.campuses.length; i++){
+  		if (this.state.campuses[i].id === campusId){
+  			return this.state.campuses[i].name;
+  		}
+  	}
+  }
+
   render(){
     const CampusMainComponent = () => (<CampusMain campuses={this.state.campuses} />)
-    const StudentGridComponent = () => (<StudentGrid students={this.state.students} />);
+    const StudentGridComponent = () => (<StudentGrid students={this.state.students} campuses={this.state.campuses} getCampusName={this.getCorrespondingCampusName} />);
     const HeaderComponent = () => (<Header />);
     const StudentViewComponent = ({match}) => {
       return (
