@@ -111,8 +111,8 @@ class App extends React.Component{
     return(
       <div id="app">
         <Router>
+          <Route exact path = "/" render={HeaderComponent} />
           <Switch>
-            <Route exact path = "/" render={HeaderComponent} />
             <Route exact path = "/students" component={StudentGridComponent} />
             <Route exact path="/students/:id" render={StudentViewComponent} />
           </Switch>

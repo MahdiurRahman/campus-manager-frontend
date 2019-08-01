@@ -10,8 +10,12 @@ class Header extends React.Component{
     render(){
         return(
             <ul id="header">
-                <li> Home </li>
-                <li> Campuses </li>
+                <Link to="/">
+                    <li> Home </li>
+                </Link>
+                <Link to ="/campuses">
+                    <li> Campuses </li>
+                </Link>
                  <Link to="/students">
                     <li> Students </li>
                  </Link>
