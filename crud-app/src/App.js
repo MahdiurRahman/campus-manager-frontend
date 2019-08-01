@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/Header.js';
 import StudentGrid from './components/StudentGrid.js';
 import StudentView from './components/StudentView'
+import CampusView from './components/CampusView'
 import CampusMain from './components/CampusMain'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
@@ -109,18 +110,20 @@ class App extends React.Component{
           gpa={this.state.students[match.params.id].gpa} />
       )
     }
+    const CampusViewComponent = ({match}) => (<CampusView campus={this.state.campuses[match.params.id]}/>)
 
-    return(
-      <div id="app">
-        <Router>
-          <Route exact path = "/" render={HeaderComponent} />
-          <Switch>
-            <Route exact path = "/students" component={StudentGridComponent} />
-            <Route exact path = "/campuses" render={CampusMainComponent}/>
-            <Route exact path="/students/:id" render={StudentViewComponent} />
-          </Switch>
-        </Router>
-      </div>
+        return(
+          <div id="app">
+            <Router>
+              <Route exact path = "/" render={HeaderComponent} />
+              <Switch>
+                <Route exact path = "/students" component={StudentGridComponent} />
+                <Route exact path = "/campuses" render={CampusMainComponent}/>
+                <Route exact path="/students/:id" render={StudentViewComponent} />
+                <Route exact path = "/campuses/:id" render={CampusViewComponent}/>
+              </Switch>
+            </Router>
+          </div>
     )
   }
 }
