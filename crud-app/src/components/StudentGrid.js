@@ -7,15 +7,6 @@ import { Link } from 'react-router-dom'
 class StudentGrid extends Component{
 
 	render(){
-
-		// let studentList = [];
-		// for (let i  = 0; i < this.props.students; i++){
-		// 	studentList.push(
-		// 		<Link to={`/students/${this.props.students[i].id}`}>
-		// 			<StudentCard name={this.props.students[i].name} campusName={this.props.students[i].college} imageLink={this.props.students[i].img} />
-		// 		</Link>
-		// 		);
-		// }
 		return (
 			<div className="studentsPage">
 				<Header />
@@ -24,7 +15,7 @@ class StudentGrid extends Component{
 				</div>
 				<div className="studentGridView">
 					{this.props.students.map(singleStudent => (
-						<StudentCard name={singleStudent.name} campusName={singleStudent.college} imageLink={singleStudent.img} />
+						<StudentCard name={singleStudent.name} campusId={singleStudent.college} imageLink={singleStudent.img} getCampusName={this.props.getCampusName} />
 						))}
 				</div>
 			</div>
