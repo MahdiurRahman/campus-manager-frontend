@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header.js';
 import StudentGrid from './components/StudentGrid.js';
+import StudentView from './components/StudentView'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 class App extends React.Component{
@@ -24,70 +25,88 @@ class App extends React.Component{
         img: ''
       }],
 
-      students: [{
-        id: 0,
-        name: "Neil Tyson",
-        img: '',
-        gpa: 2.0,
-        college: 0
-      },{
-        id: 1,
-        name: "Mike Tyson",
-        img: '',
-        gpa: 2.2,
-        college: 0
-      },{
-        id: 2,
-        name: "Elon Musk",
-        img: '',
-        gpa: 2.7,
-        college: 0
-      },{
-        id: 3,
-        name: "Elizabeth Ryler",
-        img: '',
-        gpa: 2.9,
-        college: 1
-      },{
-        id: 4,
-        name: "Harold Kimp",
-        img: '',
-        gpa: 3.3,
-        college: 1
-      },{
-        id: 5,
-        name: "Michelle Rubin",
-        img: '',
-        gpa: 1.0,
-        college: 1
-      },{
-        id: 6,
-        name: "Kenneth Di",
-        img: '',
-        gpa: 0.1,
-        college: 1
-      },{
-        id: 7,
-        name: "Lolita Lopez",
-        img: '',
-        gpa: 3.7,
-        college: 1
-      },{
-        id: 8,
-        name: "Rain Man",
-        img: '',
-        gpa: 4.0,
-        college: 0
-      }],
+      students: [
+        {
+          id: 0,
+          name: "Neil Tyson",
+          img: 'https://d29fhpw069ctt2.cloudfront.net/icon/image/49320/preview.svg',
+          gpa: 2.0,
+          college: 0
+        },
+        {
+          id: 1,
+          name: "Mike Tyson",
+          img: 'https://d29fhpw069ctt2.cloudfront.net/icon/image/49320/preview.svg',
+          gpa: 2.2,
+          college: 0
+        },
+        {
+          id: 2,
+          name: "Elon Musk",
+          img: 'https://d29fhpw069ctt2.cloudfront.net/icon/image/49320/preview.svg',
+          gpa: 2.7,
+          college: 0
+        },
+        {
+          id: 3,
+          name: "Elizabeth Ryler",
+          img: 'https://d29fhpw069ctt2.cloudfront.net/icon/image/49320/preview.svg',
+          gpa: 2.9,
+          college: 1
+        },
+        {
+          id: 4,
+          name: "Harold Kimp",
+          img: 'https://d29fhpw069ctt2.cloudfront.net/icon/image/49320/preview.svg',
+          gpa: 3.3,
+          college: 1
+        },
+        {
+          id: 5,
+          name: "Michelle Rubin",
+          img: 'https://d29fhpw069ctt2.cloudfront.net/icon/image/49320/preview.svg',
+          gpa: 1.0,
+          college: 1
+        },
+        {
+          id: 6,
+          name: "Kenneth Di",
+          img: 'https://d29fhpw069ctt2.cloudfront.net/icon/image/49320/preview.svg',
+          gpa: 0.1,
+          college: 1
+        },
+        {
+          id: 7,
+          name: "Lolita Lopez",
+          img: 'https://d29fhpw069ctt2.cloudfront.net/icon/image/49320/preview.svg',
+          gpa: 3.7,
+          college: 1
+        },
+        {
+          id: 8,
+          name: "Rain Man",
+          img: 'https://d29fhpw069ctt2.cloudfront.net/icon/image/49320/preview.svg',
+          gpa: 4.0,
+          college: 0
+        }
+      ],
 
-      selectedCampus: 0,
-      selectedStudent: ''
+      selectedCampus: null,
+      selectedStudent: null
     }
   }
 
   render(){
     const StudentGridComponent = () => (<StudentGrid students={this.state.students} />);
     const HeaderComponent = () => (<Header />);
+    const StudentViewComponent = ({match}) => {
+      return (
+        <StudentView
+          name={this.state.students[match.params.id].name}
+          img={this.state.students[match.params.id].img}
+          gpa={this.state.students[match.params.id].gpa} />
+      )
+    }
 
     return(
       <div id="app">
@@ -95,6 +114,7 @@ class App extends React.Component{
           <Switch>
             <Route exact path = "/" render={HeaderComponent} />
             <Route exact path = "/students" component={StudentGridComponent} />
+            <Route exact path="/students/:id" render={StudentViewComponent} />
           </Switch>
         </Router>
       </div>

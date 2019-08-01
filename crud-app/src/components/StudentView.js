@@ -4,7 +4,7 @@ function StudentView(props) {
     return (
         <div>
             <p>{props.name}</p>
-            <img src={props.imageURL} />
+            <img src={props.img} />
             <p>{props.gpa}</p>
             <p>This student is registered to:</p>
             {/* INSERT CAMPUS CARD OVER HERE WITH A PROP SENDING TO CORRECT CAMPUS */}
