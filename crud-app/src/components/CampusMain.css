@@ -1,0 +1,9 @@
+.campus-nav {
+    background: #919191;
+    height: 40px;
+}
+
+.campus-nav-element {
+    display: inline-block;
+    margin: 8px;
+}

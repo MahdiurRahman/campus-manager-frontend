@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/Header.js';
 import StudentGrid from './components/StudentGrid.js';
 import StudentView from './components/StudentView'
+import CampusMain from './components/CampusMain'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 class App extends React.Component{
@@ -97,6 +98,7 @@ class App extends React.Component{
   }
 
   render(){
+    const CampusMainComponent = () => (<CampusMain campuses={this.state.campuses} />)
     const StudentGridComponent = () => (<StudentGrid students={this.state.students} />);
     const HeaderComponent = () => (<Header />);
     const StudentViewComponent = ({match}) => {
@@ -114,6 +116,7 @@ class App extends React.Component{
           <Switch>
             <Route exact path = "/" render={HeaderComponent} />
             <Route exact path = "/students" component={StudentGridComponent} />
+            <Route exact path = "/campuses" render={CampusMainComponent}/>
             <Route exact path="/students/:id" render={StudentViewComponent} />
           </Switch>
         </Router>

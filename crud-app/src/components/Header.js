@@ -11,10 +11,10 @@ class Header extends React.Component{
         return(
             <ul id="header">
                 <li> Home </li>
-                <li> Campuses </li>
                  <Link to="/students">
                     <li> Students </li>
                  </Link>
+                <Link to="/campuses"><li> Campuses </li></Link> 
             </ul>
         )
     }
