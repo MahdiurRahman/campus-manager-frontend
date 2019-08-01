@@ -1,0 +1,17 @@
+.CampusCard {
+    display: inline-block;
+    margin: 10px;
+    border: 2px solid grey;
+}
+
+.campus-card-img {
+    display: inline-block;
+    height: 80px;
+    width: 80px;
+    margin: 10px;
+}
+
+.campus-card-info {
+    display: inline-block;
+    margin: 10px;
+}
