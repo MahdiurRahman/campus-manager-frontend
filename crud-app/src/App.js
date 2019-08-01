@@ -111,7 +111,10 @@ class App extends React.Component{
       )
           }
 
-    const CampusViewComponent = ({match}) => (<CampusView campus={this.state.campuses[match.params.id]}/>)
+    const CampusViewComponent = ({match}) => (<CampusView 
+                                                campus={this.state.campuses[match.params.id]}
+                                                students={this.state.students.filter(student => (student.college == match.params.id))}
+                                              />);
 
         return(
           <div id="app">

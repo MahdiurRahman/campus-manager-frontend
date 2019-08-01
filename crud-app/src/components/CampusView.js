@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import CampusStudentGrid from './CampusStudentGrid.js'
 
 function CampusView(props) {
+    console.log(props.students);
     return (
         <div>
             <p>{props.campus.name}</p>
@@ -8,7 +10,7 @@ function CampusView(props) {
             <p>{props.campus.address}</p>
             <p>{props.campus.bio}</p>
             <p>Students on campus:</p>
-            {/* INSERT STUDENT CARDS OVER (possibly via map?) HERE WITH A PROP SENDING TO CORRECT STUDENTS */}
+            <CampusStudentGrid students={props.students}/>
             <button>FUTURE LINK TO EDIT</button>
             <button>FUTURE LINK AND FUNCTION TO DELETE</button>
         </div>
