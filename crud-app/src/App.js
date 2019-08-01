@@ -18,13 +18,13 @@ class App extends React.Component{
         name: "Hunter College",
         bio: "Goonie School 1",
         address: "East 68th street, NY",
-        img: ''
+        img: 'https://png.pngtree.com/svg/20170616/22811e059c.svg'
       },{
         id: 1,
         name: "Baruch College",
         bio: "Goonie School 2",
         address: "Kips bay, NY",
-        img: ''
+        img: 'https://png.pngtree.com/svg/20170616/22811e059c.svg'
       }],
 
       students: [
