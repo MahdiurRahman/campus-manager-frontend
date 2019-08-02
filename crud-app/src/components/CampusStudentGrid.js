@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Header from './Header.js';
-import StudentCard from './StudentCard.js';
+import StudentCard from './CampusStudentCard.js';
 import './StudentGrid.css';
 import { Link } from 'react-router-dom'
 
@@ -18,7 +18,6 @@ class StudentGrid extends Component{
 		// }
 		return (
 			<div className="studentsPage">
-				<Header />
 				<div className="studentGridTop">
 					<h1>Students</h1>
 				</div>
