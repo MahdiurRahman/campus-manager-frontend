@@ -6,6 +6,8 @@ import StudentGrid from './components/StudentGrid.js';
 import StudentView from './components/StudentView'
 import CampusView from './components/CampusView'
 import CampusMain from './components/CampusMain'
+import CampusAddForm from './components/CampusAddForm'
+import {connect} from "react-redux"
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 class App extends React.Component{
@@ -13,20 +15,6 @@ class App extends React.Component{
   {
     super(props);
     this.state ={
-      campuses: [{
-        id: 0,
-        name: "Hunter College",
-        bio: "Goonie School 1",
-        address: "East 68th street, NY",
-        img: 'https://png.pngtree.com/svg/20170616/22811e059c.svg'
-      },{
-        id: 1,
-        name: "Baruch College",
-        bio: "Goonie School 2",
-        address: "Kips bay, NY",
-        img: 'https://png.pngtree.com/svg/20170616/22811e059c.svg'
-      }],
-
       students: [
         {
           id: 0,
@@ -99,16 +87,16 @@ class App extends React.Component{
   }
 
   getCorrespondingCampusName = (campusId) =>{
-  	for (let i = 0; i < this.state.campuses.length; i++){
-  		if (this.state.campuses[i].id === campusId){
-  			return this.state.campuses[i].name;
+  	for (let i = 0; i < this.props.campuses.length; i++){
+  		if (this.props.campuses[i].id === campusId){
+  			return this.props.campuses[i].name;
   		}
   	}
   }
 
   render(){
-    const CampusMainComponent = () => (<CampusMain campuses={this.state.campuses} />)
-    const StudentGridComponent = () => (<StudentGrid students={this.state.students} campuses={this.state.campuses} getCampusName={this.getCorrespondingCampusName} />);
+    const CampusMainComponent = () => (<CampusMain campuses={this.props.campuses} />)
+    const StudentGridComponent = () => (<StudentGrid students={this.state.students} campuses={this.props.campuses} getCampusName={this.getCorrespondingCampusName} />);
     const HeaderComponent = () => (<Header />);
     const StudentViewComponent = ({match}) => {
       return (
@@ -120,10 +108,12 @@ class App extends React.Component{
           }
 
     const CampusViewComponent = ({match}) => (<CampusView 
-                                                campus={this.state.campuses[match.params.id]}
+                                                campus={this.props.campuses[match.params.id]}
                                                 students={this.state.students.filter(student => (student.college == match.params.id))}
                                               />);
 
+	const CampusAddFormComponent = () => (<CampusAddForm campuses={this.props.campuses}/>);
+	console.log(this.props.campuses);
         return(
           <div id="app">
             <Router>
@@ -133,6 +123,7 @@ class App extends React.Component{
                 <Route exact path = "/campuses" render={CampusMainComponent}/>
                 <Route exact path="/students/:id" render={StudentViewComponent} />
                 <Route exact path = "/campuses/:id" render={CampusViewComponent}/>
+                <Route exact path = "/campusAddForm" render={CampusAddFormComponent}/>
               </Switch>
             </Router>
           </div>
@@ -140,4 +131,9 @@ class App extends React.Component{
   }
 }
 
-export default App;
+const getStateToProps = (state) => {
+	// from redux to props
+	return {campuses: state.campuses};
+}
+
+export default connect(getStateToProps)(App);

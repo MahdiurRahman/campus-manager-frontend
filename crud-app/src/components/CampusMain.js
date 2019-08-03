@@ -2,6 +2,8 @@ import React from "react";
 import Header from './Header.js';
 import CampusGrid from "./CampusGrid.js";
 import "./CampusMain.css";
+import {Link} from "react-router-dom";
+import {connect} from 'react-redux';
 
 class CampusMain extends React.Component {
     render() {
@@ -11,7 +13,7 @@ class CampusMain extends React.Component {
               <div className="campus-main">
                 <div className="campus-nav">
                   <div className="campus-nav-element nav-title">All Campuses</div>
-                  <button className="campus-nav-element">Add Campus</button>
+                  <Link to="/campusAddForm" className="campus-nav-element">Add Campus</Link>
                 </div>
                 <CampusGrid campuses={this.props.campuses}/>
               </div>
