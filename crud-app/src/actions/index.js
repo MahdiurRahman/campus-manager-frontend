@@ -17,4 +17,18 @@ export const selectCampus = (Campus) => {
 		type: "SELECT_CAMPUS",
 		payload: Campus
 	}
-}
+};
+
+export const addStudent = (Student) =>{
+    return {
+    type: 'ADD_STUDENT',
+    payload: Student
+    };
+};
+
+export const selectStudent = (Student) => {
+    return {
+    type: "Select Student",
+    payload: Student
+    }
+};
