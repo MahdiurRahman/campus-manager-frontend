@@ -12,13 +12,10 @@ export const removeCampus = (Campus) => {
 	};
 };
 
-export const editCampus = (oldCampus, newCampus) => {
+export const editCampus = newCampus => {
 	return {
 		type: 'EDIT_CAMPUS',
-		payload: {
-			oldCampus: oldCampus,
-			newCampus: newCampus
-		}
+		payload: newCampus
 	};
 };
 

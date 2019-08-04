@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import StudentCard from './StudentCard'
 import {connect} from 'react-redux'
+import {editCampus} from '../actions'
 
 class EditCampus extends Component {
     constructor(props) {
@@ -22,11 +23,15 @@ class EditCampus extends Component {
         })
     }
 
+    onSubmitHandler = event => {
+        event.preventDefault()
+        this.props.editCampus(this.state)
+    }
 
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.onSubmitHandler}>
                     <input name="name" type="text" placeholder="name" value={this.state.name} onChange={this.onChangeHandler} />
                     <input name="address" type="text" placeholder="address" value={this.state.address} onChange={this.onChangeHandler} />
                     <input name="img" type="text" placeholder="image url" value={this.state.img} onChange={this.onChangeHandler} />
@@ -51,4 +56,6 @@ const mapStateToProps = state => {
     return state
 }
 
-export default connect(mapStateToProps, {})(EditCampus)
+export default connect(mapStateToProps, {
+    editCampus
+})(EditCampus)
