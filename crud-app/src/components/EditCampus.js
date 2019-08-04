@@ -13,7 +13,7 @@ class EditCampus extends Component {
             address: props.campus.address,
             img: props.campus.img
         }
-
+        this.onChangeHandler = this.onChangeHandler.bind(this)
     }
 
     onChangeHandler = event => {
@@ -27,10 +27,10 @@ class EditCampus extends Component {
         return (
             <div>
                 <form>
-                    <input name="name" type="text" placeholder="name" value={this.state.name} />
-                    <input name="address" type="text" placeholder="address" value={this.state.address} />
-                    <input name="img" type="text" placeholder="image url" value={this.state.img} />
-                    <textarea name="bio" placeholder="Insert Description" value={this.state.bio}></textarea>
+                    <input name="name" type="text" placeholder="name" value={this.state.name} onChange={this.onChangeHandler} />
+                    <input name="address" type="text" placeholder="address" value={this.state.address} onChange={this.onChangeHandler} />
+                    <input name="img" type="text" placeholder="image url" value={this.state.img} onChange={this.onChangeHandler} />
+                    <textarea name="bio" placeholder="Insert Description" value={this.state.bio} onChange={this.onChangeHandler} ></textarea>
                     <button>Save Changes</button>
                 </form>
                 <form>
