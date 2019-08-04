@@ -59,7 +59,7 @@ class App extends React.Component{
         return(
           <div id="app">
             <Router>
-              <Route exact path = "/" render={HeaderComponent} />
+              <Route path = "/" render={HeaderComponent} />
               <Switch>
                 <Route exact path = "/students" component={StudentMainComponent} />
                 <Route exact path = "/campuses" render={CampusMainComponent}/>
@@ -67,7 +67,7 @@ class App extends React.Component{
                 <Route exact path = "/campuses/:id" render={CampusViewComponent}/>
                 <Route exact path="/campuses/:id/edit" render={CampusEditForms} />
                 <Route exact path = "/campusAddForm" render={CampusAddFormComponent}/>
-               <Route exact path = "/studentAddForm" render={StudentAddFormComponent} />
+                <Route exact path = "/studentAddForm" render={StudentAddFormComponent} />
               </Switch>
             </Router>
           </div>
