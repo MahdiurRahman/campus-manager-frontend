@@ -10,7 +10,6 @@ class StudentGrid extends Component{
 	render(){
 		return (
 			<div className="studentsPage">
-				<Header />
 				<div className="studentGridTop">
 					<h1>All Students</h1>
 				</div>
