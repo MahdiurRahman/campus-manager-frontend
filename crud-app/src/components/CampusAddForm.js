@@ -17,7 +17,7 @@ class CampusAddForm extends React.Component {
 		e.preventDefault();
 
 		let campus = {
-			id: e.target.elements.id.value,
+			id: this.props.campuses.length.toString(),
 			name: e.target.elements.name.value,
 			bio: e.target.elements.bio.value,
 			address: e.target.elements.address.value,
@@ -31,10 +31,6 @@ class CampusAddForm extends React.Component {
 		if (!this.state.redirect) {
 			return (
 				<form onSubmit={this.addCampus}>
-				  <label>
-					ID:
-					<input type="text" name="id" />
-				  </label>
 				  <label>
 					Name:
 					<input type="text" name="name" />
@@ -58,8 +54,11 @@ class CampusAddForm extends React.Component {
 	}
 }
 
-const getStateToProps = (State) => {
-	return {};
+const getStateToProps = state => {
+	console.log(state)
+	return {
+		campuses: state.campuses
+	};
 }
 
 export default connect(getStateToProps, {addCampus: addCampus})(CampusAddForm);
