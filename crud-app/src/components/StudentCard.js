@@ -8,16 +8,18 @@ class StudentCard extends Component{
 		return(
 			<div className="studentInfo">
 				<Link to={thisStudentIdLink}>
-				<div className="studentImage">
-					<img src={this.props.imageLink} alt="Student Pic" />
-				</div>
-				<div className="studentName">
-					{this.props.name}
-				</div>
+					<div className="studentImage">
+						<img src={this.props.imageLink} alt="Student Pic" />
+					</div>
+					<div className="studentName">
+						{this.props.name}
+					</div>
+				</Link>
 				<div className="campusName">
 					{this.props.getCampusName(this.props.campusId)}
 				</div>
-				</Link>
+				
+
 			</div>
 		);
 	}
