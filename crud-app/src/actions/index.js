@@ -12,6 +12,16 @@ export const removeCampus = (Campus) => {
 	};
 };
 
+export const editCampus = (oldCampus, newCampus) => {
+	return {
+		type: 'EDIT_CAMPUS',
+		payload: {
+			oldCampus: oldCampus,
+			newCampus: newCampus
+		}
+	};
+};
+
 export const selectCampus = (Campus) => {
 	return {
 		type: "SELECT_CAMPUS",
