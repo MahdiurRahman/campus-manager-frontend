@@ -102,9 +102,9 @@ const studentsReducer = (oldListOfStudents = students, action) => {
         case "ADD_STUDENT":
             return oldListOfStudents.concat(action.payload);
 		case "REMOVE_STUDENT":
-            return oldListofStudents.filter(Student => (Student.id !== action.payload.id));
+            return oldListOfStudents.filter(Student => (Student.id !== action.payload.id));
         case "EDIT_STUDENT":
-            let newListOfStudents = oldListofStudents
+            let newListOfStudents = oldListOfStudents
             newListOfStudents[action.payload.id] = action.payload
             return newListOfStudents
         default:
@@ -114,6 +114,5 @@ const studentsReducer = (oldListOfStudents = students, action) => {
 
 export default combineReducers({
 	campuses: campusesReducer,
-	selectedCampus: selectedCampusReducer,
     students: studentsReducer
 });
