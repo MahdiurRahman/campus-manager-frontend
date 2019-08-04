@@ -97,17 +97,16 @@ const campusesReducer = (oldListofCampus = campuses, action) => {
 	}
 };
 
-const selectedCampusReducer = (selectedCampus = null, action) => {
-	if (action.type === 'SELECT_CAMPUS') {
-		return action.payload
-	}
-	return selectedCampus;
-};
-
 const studentsReducer = (oldListOfStudents = students, action) => {
     switch(action.type){
         case "ADD_STUDENT":
             return oldListOfStudents.concat(action.payload);
+		case "REMOVE_STUDENT":
+            return oldListofStudents.filter(Student => (Student.id !== action.payload.id));
+        case "EDIT_STUDENT":
+            let newListOfStudents = oldListofStudents
+            newListOfStudents[action.payload.id] = action.payload
+            return newListOfStudents
         default:
             return oldListOfStudents;
     }
