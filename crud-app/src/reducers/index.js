@@ -89,8 +89,9 @@ const campusesReducer = (oldListofCampus = campuses, action) => {
 		case "REMOVE_CAMPUS":
             return oldListofCampus.filter(Campus => (Campus.id !== action.payload.id));
         case "EDIT_CAMPUS":
-            let newListOfCampus = oldListofCampus.filter(Campus => (Campus.id !== action.payload.id));
-            return newListOfCampus.concat(action.payload);
+            let newListOfCampus = oldListofCampus
+            newListOfCampus[action.payload.id] = action.payload
+            return newListOfCampus
 		default:
 			return oldListofCampus;
 	}
