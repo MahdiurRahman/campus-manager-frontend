@@ -9,6 +9,7 @@ import CampusMain from './components/CampusMain'
 import CampusAddForm from './components/CampusAddForm'
 import StudentMain from './components/StudentMain';
 import StudentAddForm from './components/StudentAddForm';
+import EditCampus from './components/EditCampus'
 import {connect} from "react-redux"
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
@@ -31,8 +32,8 @@ class App extends React.Component{
   }
 
   render(){
-      const CampusMainComponent = () => (<CampusMain campuses={this.props.campuses} />);
-      const StudentMainComponent = () => (<StudentMain students={this.props.students} campuses={this.props.campuses} getCampusName={this.getCorrespondingCampusName} />);
+    const CampusMainComponent = () => (<CampusMain campuses={this.props.campuses} />);
+    const StudentMainComponent = () => (<StudentMain students={this.props.students} campuses={this.props.campuses} getCampusName={this.getCorrespondingCampusName} />);
     const HeaderComponent = () => (<Header />);
     const StudentViewComponent = ({match}) => {
       return (
@@ -49,8 +50,12 @@ class App extends React.Component{
                                               />);
 
 	const CampusAddFormComponent = () => (<CampusAddForm campuses={this.props.campuses}/>);
-      const StudentAddFormComponent = () => <StudentAddForm students={this.props.students} />;
+  const StudentAddFormComponent = () => <StudentAddForm students={this.props.students} />;
+  const CampusEditForms = ({match}) => (
+    <EditCampus />
+  )
 	console.log(this.props.campuses);
+        
         return(
           <div id="app">
             <Router>
@@ -60,6 +65,7 @@ class App extends React.Component{
                 <Route exact path = "/campuses" render={CampusMainComponent}/>
                 <Route exact path="/students/:id" render={StudentViewComponent} />
                 <Route exact path = "/campuses/:id" render={CampusViewComponent}/>
+                <Route exact path="/campuses/:id/edit" render={CampusEditForms} />
                 <Route exact path = "/campusAddForm" render={CampusAddFormComponent}/>
                <Route exact path = "/studentAddForm" render={StudentAddFormComponent} />
               </Switch>
