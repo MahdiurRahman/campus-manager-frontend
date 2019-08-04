@@ -52,7 +52,7 @@ class App extends React.Component{
 	const CampusAddFormComponent = () => (<CampusAddForm campuses={this.props.campuses}/>);
   const StudentAddFormComponent = () => <StudentAddForm students={this.props.students} />;
   const CampusEditForms = ({match}) => (
-    <EditCampus />
+    <EditCampus campus={this.props.campuses[match.params.id]} />
   )
 	console.log(this.props.campuses);
         

@@ -3,6 +3,7 @@ import "./CampusCard.css"
 import {connect} from "react-redux"
 import {Redirect} from 'react-router';
 import {removeCampus} from '../actions/index.js'
+import {Link} from 'react-router-dom'
 
 class CampusCard extends React.Component {
 	constructor(props) {
@@ -31,7 +32,7 @@ class CampusCard extends React.Component {
               <div className="campus-card-info">
                 <div className="campus-card-title">{this.props.campus.name}</div>
                 <div className="campus-card-element">{this.props.campus.bio}</div>
-                <button className="campus-card-element">edit</button>
+                <button className="campus-card-element"><Link to={"/campuses/" + this.props.campus.id + "/edit"}>edit</Link></button>
                 <button className="campus-card-element" onClick={this.removeCampus}>remove</button>
                 <button className="campus-card-element" onClick={this.viewCampus}>view</button>
               </div>
