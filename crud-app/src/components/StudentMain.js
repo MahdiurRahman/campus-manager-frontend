@@ -9,7 +9,6 @@ class StudentMain extends Component {
     render() {
         return (
                 <div>
-                    <Header/>
                     <div className="student-main">
                         <div className="student-nav">
                             <div className="student-nav-element nav-title">All Students</div>

@@ -9,7 +9,6 @@ class CampusMain extends React.Component {
     render() {
         return (
             <div>
-              <Header/>
               <div className="campus-main">
                 <div className="campus-nav">
                   <div className="campus-nav-element nav-title">All Campuses</div>
