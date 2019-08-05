@@ -14,7 +14,7 @@ class StudentMain extends Component {
                             <div className="student-nav-element nav-title">All Students</div>
                                 <Link to="/studentAddForm" className="student-nav-element">Add Student</Link>
                             </div>
-                            <StudentGrid mapAll="on" />
+                            <StudentGrid students={this.props.students} />
                         </div>
                     </div>
                 );
