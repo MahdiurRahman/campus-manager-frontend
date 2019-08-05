@@ -23,7 +23,11 @@ class CampusCard extends React.Component {
               <div className="campus-card-info">
                 <Link className="campus-card-title" to={"/campuses/" + this.props.campus.id}>{this.props.campus.name}</Link>
                 <div className="campus-card-element">{this.props.campus.bio}</div>
-                <button className="campus-card-element"><Link to={"/campuses/" + this.props.campus.id + "/edit"}>edit</Link></button>
+                <Link to={"/campuses/" + this.props.campus.id + "/edit"}>
+                  <button className="campus-card-element">
+                    edit
+                  </button>
+                </Link>
                 <button className="campus-card-element" onClick={this.removeCampus}>remove</button>
               </div>
             </div>
