@@ -19,7 +19,7 @@ class EditCampus extends Component {
 
     onChangeHandler = event => {
         this.setState({
-            [event.target.name]: [event.target.value]
+            [event.target.name]: event.target.value
         })
     }
 

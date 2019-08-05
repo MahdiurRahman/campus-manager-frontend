@@ -50,15 +50,13 @@ class App extends React.Component{
             <Route exact path = "/campuses" render={CampusMainComponent}/>
 
             {this.props.students.map(student => {
+              console.log(student.id)
               return (
                 <Route exact path={"/students/" + student.id}
                   render={() => {
                     return (
                       <StudentView
-                        id={student.id}
-                        name={student.name}
-                        img={student.img}
-                        gpa={student.gpa}
+                        student_id={student.id}
                       />
                     )
                   }}

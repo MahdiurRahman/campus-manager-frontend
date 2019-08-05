@@ -105,7 +105,11 @@ const studentsReducer = (oldListOfStudents = students, action) => {
             return oldListOfStudents.filter(Student => (Student.id !== action.payload.id));
         case "EDIT_STUDENT":
             let newListOfStudents = oldListOfStudents
-            newListOfStudents[action.payload.id] = action.payload
+            for (let i = 0; i < newListOfStudents.length; i++) {
+                if (newListOfStudents[i].id == action.payload.id) {
+                    newListOfStudents[i] = action.payload
+                }
+            }
             return newListOfStudents
         default:
             return oldListOfStudents;
