@@ -55,10 +55,7 @@ class App extends React.Component{
                   render={() => {
                     return (
                       <StudentView
-                        id={student.id}
-                        name={student.name}
-                        img={student.img}
-                        gpa={student.gpa}
+                        student_id={student.id}
                       />
                     )
                   }}
