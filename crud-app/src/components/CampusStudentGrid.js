@@ -4,7 +4,7 @@ import StudentCard from './CampusStudentCard.js';
 import './StudentGrid.css';
 import { Link } from 'react-router-dom'
 
-class StudentGrid extends Component{
+class CampusStudentGrid extends Component{
 
 	render(){
 
@@ -31,4 +31,4 @@ class StudentGrid extends Component{
 	}
 }
 
-export default StudentGrid;
+export default CampusStudentGrid;

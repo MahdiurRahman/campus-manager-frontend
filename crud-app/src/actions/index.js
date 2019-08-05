@@ -46,3 +46,10 @@ export const editStudent = newStudent => {
 		payload: newStudent
 	};
 };
+
+export const removeCampusFromStudent = campus => {
+	return {
+		type: 'REMOVE_CAMPUS_FROM_STUDENT',
+		payload: campus
+	}
+}

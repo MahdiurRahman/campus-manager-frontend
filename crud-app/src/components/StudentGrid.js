@@ -11,9 +11,6 @@ import {connect} from 'react-redux'
  	render(){
  		return (
  			<div className="studentsPage">
- 				<div className="studentGridTop">
- 					<h1>All Students</h1>
- 				</div>
  				<div className="studentGridView">
 				    {this.props.students.map(student => (
                 		<StudentCard student={student}/>

@@ -2,7 +2,7 @@ import React from "react"
 import "./CampusCard.css"
 import {connect} from "react-redux"
 import {Redirect} from 'react-router';
-import {removeCampus} from '../actions/index.js'
+import {removeCampus, removeCampusFromStudent} from '../actions/index.js'
 import {Link} from 'react-router-dom'
 
 class CampusCard extends React.Component {
@@ -12,7 +12,8 @@ class CampusCard extends React.Component {
 	}
 
 	removeCampus() {
-		this.props.removeCampus(this.props.campus);
+    this.props.removeCampus(this.props.campus);
+    this.props.removeCampusFromStudent(this.props.campus);
   }
 
     render() {
@@ -33,4 +34,7 @@ class CampusCard extends React.Component {
 const getStateToProps = (State) => {
 	return {};
 }
-export default connect(getStateToProps, {removeCampus: removeCampus})(CampusCard);
+export default connect(getStateToProps, {
+  removeCampus: removeCampus,
+  removeCampusFromStudent: removeCampusFromStudent
+})(CampusCard);

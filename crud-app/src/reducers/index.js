@@ -98,16 +98,23 @@ const campusesReducer = (oldListofCampus = campuses, action) => {
 };
 
 const studentsReducer = (oldListOfStudents = students, action) => {
+    let newListOfStudents = oldListOfStudents
     switch(action.type){
         case "ADD_STUDENT":
             return oldListOfStudents.concat(action.payload);
 		case "REMOVE_STUDENT":
             return oldListOfStudents.filter(Student => (Student.id !== action.payload.id));
         case "EDIT_STUDENT":
-            let newListOfStudents = oldListOfStudents
             for (let i = 0; i < newListOfStudents.length; i++) {
                 if (newListOfStudents[i].id == action.payload.id) {
                     newListOfStudents[i] = action.payload
+                }
+            }
+            return newListOfStudents
+        case 'REMOVE_CAMPUS_FROM_STUDENT':
+            for (let i = 0; i < newListOfStudents.length; i++) {
+                if (newListOfStudents[i].college == action.payload.id) {
+                    newListOfStudents[i].college = undefined
                 }
             }
             return newListOfStudents
