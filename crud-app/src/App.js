@@ -35,53 +35,65 @@ class App extends React.Component{
     const CampusMainComponent = () => (<CampusMain campuses={this.props.campuses} />);
     const StudentMainComponent = () => (<StudentMain students={this.props.students} />);
     const HeaderComponent = () => (<Header />);
-    const StudentViewComponent = ({match}) => {
-      return (
-        <StudentView
-          name={this.props.students[match.params.id].name}
-          img={this.props.students[match.params.id].img}
-          gpa={this.props.students[match.params.id].gpa} />
-      )
-          }
+	  const CampusAddFormComponent = () => (<CampusAddForm campuses={this.props.campuses}/>);
+    const StudentAddFormComponent = () => <StudentAddForm students={this.props.students} />;
+    console.log(this.props.campuses);
+    
+    return(
+      <div id="app">
+        <Router>
+          <Route path = "/" render={HeaderComponent} />
+          <Switch>
+            <Route exact path = "/students" component={StudentMainComponent} />
+            <Route exact path = "/campuses" render={CampusMainComponent}/>
 
-    const CampusViewComponent = ({match}) => (<CampusView 
-                                                campus={this.props.campuses[match.params.id]}
-                                                students={this.props.students.filter(student => (student.college == match.params.id))}
-                                              />);
+            {this.props.students.map(student => {
+              return (
+                <Route exact path={"/students/" + student.id}
+                  render={() => {
+                    return (
+                      <StudentView
+                        name={student.name}
+                        img={student.img}
+                        gpa={student.gpa}
+                      />
+                    )
+                  }}
+                />
+              )
+            })}
 
-	const CampusAddFormComponent = () => (<CampusAddForm campuses={this.props.campuses}/>);
-  const StudentAddFormComponent = () => <StudentAddForm students={this.props.students} />;
-  const CampusEditForms = ({match}) => (
-    <EditCampus campus={this.props.campuses[match.params.id]} />
-  )
-	console.log(this.props.campuses);
-  
-  let component = this.props
-        return(
-          <div id="app">
-            <Router>
-              <Route path = "/" render={HeaderComponent} />
-              <Switch>
-                <Route exact path = "/students" component={StudentMainComponent} />
-                <Route exact path = "/campuses" render={CampusMainComponent}/>
-                <Route exact path="/students/:id" render={StudentViewComponent} />
-                {this.props.campuses.map(campus => {
-                  return (
-                    <Route exact path={"/campuses/" + campus.id} render={() => {
-                      return (
-                        <CampusView 
-                          campus={campus}
-                          students={component.students.filter(student => (campus.id))} />
-                      )
-                    }} />
-                  )
-                })}
-                <Route exact path="/campuses/:id/edit" render={CampusEditForms} />
-                <Route exact path = "/campusAddForm" render={CampusAddFormComponent}/>
-                <Route exact path = "/studentAddForm" render={StudentAddFormComponent} />
-              </Switch>
-            </Router>
-          </div>
+            {this.props.campuses.map(campus => {
+              return (
+                <Route exact path={"/campuses/" + campus.id} 
+                  render={() => {
+                    return (
+                      <CampusView 
+                        campus={campus}
+                        students={component.students.filter(student => (campus.id))} />
+                    )
+                  }}
+                />
+              )
+            })}
+
+            {this.props.campuses.map(campus => {
+              return(
+                <Route exact path={"/campuses/" + campus.id + "/edit"}
+                  render={() => {
+                    return (
+                      <EditCampus campus={campus} />
+                    )
+                  }}
+                  />
+              )
+            })}
+
+            <Route exact path = "/campusAddForm" render={CampusAddFormComponent}/>
+            <Route exact path = "/studentAddForm" render={StudentAddFormComponent} />
+          </Switch>
+        </Router>
+      </div>
     )
   }
 }
