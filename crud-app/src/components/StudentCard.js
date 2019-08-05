@@ -5,27 +5,30 @@ import {connect} from 'react-redux'
 import {removeStudent} from '../actions'
 
 class StudentCard extends Component{
-	removeStudent = event => {
-		event.preventDefault()
-		console.log(this.props.students)
-		this.props.removeStudent(this.props.students[this.props.student_id].id)
+	constructor(props) {
+		super(props);
+		this.removeStudent = this.removeStudent.bind(this);
+	}
+
+	removeStudent() {
+		this.props.removeStudent(this.props.student);
 	}
 
 	render(){
-		let thisStudentIdLink = "/students/" + this.props.student_id;
+		let thisStudentIdLink = "/students/" + this.props.student.id;
 		return(
 			<div className="studentInfo">
 				<Link to={thisStudentIdLink}>
 					<div className="studentImage">
-						<img src={this.props.students[this.props.student_id].img} alt="Student Pic" />
+						<img src={this.props.student.img} alt="Student Pic" />
 					</div>
 					<div className="studentName">
-						{this.props.students[this.props.student_id].name}
+						{this.props.student.name}
 					</div>
 				</Link>
 				<div className="campusName">
-					<Link to={"/campuses/" + this.props.students[this.props.student_id].college}>
-						{this.props.campuses[this.props.students[this.props.student_id].college].name}
+					<Link to={"/campuses/" + this.props.student.college}>
+						{this.props.campuses[this.props.student.college].name}
 					</Link>
 				</div>
 				<div>
