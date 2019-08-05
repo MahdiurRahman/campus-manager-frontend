@@ -33,7 +33,7 @@ class StudentGrid extends Component {
 		let component = this.props
 		let student_list;
 		if (this.props.mapAll === "on") {
-			console.log(this.props.students)
+			console.log("DDDDDddJJJJJ")
 			student_list = this.props.students.map(student => {
 				return (
 					<StudentCard student_id={student.id} />
