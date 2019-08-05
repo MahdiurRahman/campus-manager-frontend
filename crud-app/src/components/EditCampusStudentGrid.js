@@ -14,7 +14,7 @@ class CampusStudentGrid extends Component{
 				</div>
 				<div className="studentGridView">
 					{this.props.students.map(singleStudent => (
-						<EditCampusStudentCard name={singleStudent.name} campusName={singleStudent.college} imageLink={singleStudent.img} />
+						<EditCampusStudentCard studentId={singleStudent.id} name={singleStudent.name} campusName={singleStudent.college} imageLink={singleStudent.img} />
 						))}
 				</div>
 			</div>

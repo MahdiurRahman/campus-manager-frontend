@@ -53,3 +53,11 @@ export const removeCampusFromStudent = campus => {
 		payload: campus
 	}
 }
+
+export const removeStudentFromCampus = student => {
+	console.log(student)
+	return {
+		type: 'REMOVE_STUDENT_FROM_CAMPUS',
+		payload: student
+	}
+}
