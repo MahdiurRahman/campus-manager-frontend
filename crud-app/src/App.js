@@ -9,7 +9,8 @@ import CampusMain from './components/CampusMain'
 import CampusAddForm from './components/CampusAddForm'
 import StudentMain from './components/StudentMain';
 import StudentAddForm from './components/StudentAddForm';
-import EditCampus from './components/EditCampus'
+import EditCampus from './components/EditCampus';
+import EditStudent from './components/EditStudent';
 import {connect} from "react-redux"
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
@@ -38,6 +39,7 @@ class App extends React.Component{
     const StudentViewComponent = ({match}) => {
       return (
         <StudentView
+          id={this.props.students[match.params.id].id}
           name={this.props.students[match.params.id].name}
           img={this.props.students[match.params.id].img}
           gpa={this.props.students[match.params.id].gpa} />
@@ -52,8 +54,9 @@ class App extends React.Component{
 	const CampusAddFormComponent = () => (<CampusAddForm campuses={this.props.campuses}/>);
   const StudentAddFormComponent = () => <StudentAddForm students={this.props.students} />;
   const CampusEditForms = ({match}) => (
-    <EditCampus campus={this.props.campuses[match.params.id]} />
-  )
+    <EditCampus campus={this.props.campuses[match.params.id]} /> );
+      const StudentEditForm = ({match}) => (
+    <EditStudent student={this.props.students[match.params.id]} />);
 	console.log(this.props.campuses);
         
         return(
@@ -66,6 +69,7 @@ class App extends React.Component{
                 <Route exact path="/students/:id" render={StudentViewComponent} />
                 <Route exact path = "/campuses/:id" render={CampusViewComponent}/>
                 <Route exact path="/campuses/:id/edit" render={CampusEditForms} />
+               <Route exact path="/students/:id/edit" render={StudentEditForm} />
                 <Route exact path = "/campusAddForm" render={CampusAddFormComponent}/>
                 <Route exact path = "/studentAddForm" render={StudentAddFormComponent} />
               </Switch>

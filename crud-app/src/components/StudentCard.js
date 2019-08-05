@@ -29,11 +29,6 @@ class StudentCard extends Component{
 						{this.props.campuses[this.props.students[this.props.student_id].college].name}
 					</Link>
 				</div>
-				<div>
-					<button>edit</button>
-					<button onClick={this.removeStudent}>remove</button>
-				</div>
-				
 
 			</div>
 		);
