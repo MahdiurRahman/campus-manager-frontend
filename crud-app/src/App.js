@@ -33,11 +33,7 @@ class App extends React.Component{
 
   render(){
     const CampusMainComponent = () => (<CampusMain campuses={this.props.campuses} />);
-<<<<<<< HEAD
-    const StudentMainComponent = () => (<StudentMain />);
-=======
     const StudentMainComponent = () => (<StudentMain students={this.props.students} />);
->>>>>>> studentsMain
     const HeaderComponent = () => (<Header />);
     const StudentViewComponent = ({match}) => {
       return (
