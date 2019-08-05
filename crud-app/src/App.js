@@ -39,6 +39,7 @@ class App extends React.Component{
     const StudentAddFormComponent = () => <StudentAddForm students={this.props.students} />;
     console.log(this.props.campuses);
     
+    let component = this.props
     return(
       <div id="app">
         <Router>
