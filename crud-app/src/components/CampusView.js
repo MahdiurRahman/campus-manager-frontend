@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import CampusStudentGrid from './CampusStudentGrid.js'
+import StudentGrid from './StudentGrid'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 class CampusView extends Component {
     constructor(props) {
@@ -22,10 +24,10 @@ class CampusView extends Component {
                 <img src={campus.img} />
                 <p>{campus.address}</p>
                 <p>{campus.bio}</p>
-                <p>Students on campus:</p>
-                <CampusStudentGrid students={this.props.students}/>
-                <button>FUTURE LINK TO EDIT</button>
+                <Link to={campus.id + "/edit"}><button>edit</button></Link>
                 <button>FUTURE LINK AND FUNCTION TO DELETE</button>
+                <p>Students on campus:</p>
+                <StudentGrid students={this.props.students}/>
             </div>
         )
     }

@@ -10,7 +10,17 @@ class StudentCard extends Component{
 		this.state = {
 			collegeIsDefined: this.props.student.college !== undefined
 		}
-}
+	}
+
+	findCollegeName(id) {
+		for (let i = 0; i < this.props.campuses.length; i++) {
+			if (this.props.campuses[i].id == id) {
+				return this.props.campuses[i].name
+			}
+		}
+		return ""
+	}
+
 	render(){
 		let thisStudentIdLink = "/students/" + this.props.student.id;
 		return(
@@ -26,10 +36,10 @@ class StudentCard extends Component{
 				<div className="campusName">
 				{this.state.collegeIsDefined ?
 					<Link to={"/campuses/" + this.props.student.college}>
-						{this.props.campuses[this.props.student.college].name}
+						{this.findCollegeName(this.props.student.college)}
 					</Link>
 					:
-					"This student is currently not enrolled"
+					"Not Enrolled"
 				}
 				</div>
 				
@@ -40,6 +50,7 @@ class StudentCard extends Component{
 }
 
 const getStateToProps = state => {
+	console.log(state)
 	return {
 		students: state.students,
 		campuses: state.campuses
