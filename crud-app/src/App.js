@@ -71,7 +71,7 @@ class App extends React.Component{
                     return (
                       <CampusView 
                         campus={campus}
-                        students={component.students.filter(student => (campus.id))} />
+                        students={component.students.filter(student => (student.college == campus.id))} />
                     )
                   }}
                 />
