@@ -7,13 +7,10 @@ import {removeStudent} from '../actions'
 class StudentCard extends Component{
 	constructor(props) {
 		super(props);
-		this.removeStudent = this.removeStudent.bind(this);
-	}
-
-	removeStudent() {
-		this.props.removeStudent(this.props.student);
-	}
-
+		this.state = {
+			collegeIsDefined: this.props.student.college !== undefined
+		}
+}
 	render(){
 		let thisStudentIdLink = "/students/" + this.props.student.id;
 		return(
@@ -27,9 +24,13 @@ class StudentCard extends Component{
 					</div>
 				</Link>
 				<div className="campusName">
+				{this.state.collegeIsDefined ?
 					<Link to={"/campuses/" + this.props.student.college}>
 						{this.props.campuses[this.props.student.college].name}
 					</Link>
+					:
+					"This student is currently not enrolled"
+				}
 				</div>
 				
 

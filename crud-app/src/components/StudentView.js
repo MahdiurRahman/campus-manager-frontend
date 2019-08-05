@@ -8,22 +8,21 @@ class StudentView extends Component {
         super(props)
     }
     render() {
-        console.log(this.props.student_id)
         let student;
+        console.log(this.props.student_id)
         for (let i = 0; i < this.props.students.length; i++) {
             if (this.props.students[i].id == this.props.student_id) {
                 student = this.props.students[i]
             }
         }
-        console.log(student)
         return (
             <div>
-            {/* <p>{student.name}</p>
+            <p>{student.name}</p>
             <img src={student.img} />
-            <p>{student.gpa}</p> */}
-            <p>This student is registered to: </p>
+            <p>{student.gpa}</p>
+            <p>This student is registered to:</p>
             {/* INSERT CAMPUS CARD OVER HERE WITH A PROP SENDING TO CORRECT CAMPUS */}
-            <button><Link to={"/students/" + this.props.student_id + "/edit"}>Edit</Link></button>
+            <button><Link to={"/students/" + student.id + "/edit"}>Edit</Link></button>
             <button>LINK AND FUNCTION TO DELETE</button>
             </div>
             )
