@@ -38,7 +38,6 @@ class App extends React.Component{
     const HeaderComponent = () => (<Header />);
 	  const CampusAddFormComponent = () => (<CampusAddForm campuses={this.props.campuses}/>);
     const StudentAddFormComponent = () => <StudentAddForm students={this.props.students} />;
-    console.log(this.props.campuses);
     
     let component = this.props
     return(
@@ -50,7 +49,6 @@ class App extends React.Component{
             <Route exact path = "/campuses" render={CampusMainComponent}/>
 
             {this.props.students.map(student => {
-              console.log(student.id)
               return (
                 <Route exact path={"/students/" + student.id}
                   render={() => {
