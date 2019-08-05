@@ -5,10 +5,11 @@ import {connect} from 'react-redux'
 import {removeStudent} from '../actions'
 
 class StudentCard extends Component{
-	removeStudent = event => {
-		event.preventDefault()
-		console.log(this.props.students)
-		this.props.removeStudent(this.props.students[this.props.student_id].id)
+	constructor(props) {
+		super(props)
+	}
+	removeStudent = () => {
+		this.props.removeStudent(this.props.students[this.props.student_id])
 	}
 
 	render(){
@@ -29,7 +30,7 @@ class StudentCard extends Component{
 					</Link>
 				</div>
 				<div>
-					<button onClick={() => this.removeStudent}>edit</button>
+					<button>edit</button>
 					<button onClick={this.removeStudent}>remove</button>
 				</div>
 				

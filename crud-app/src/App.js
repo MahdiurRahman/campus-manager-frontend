@@ -33,7 +33,7 @@ class App extends React.Component{
 
   render(){
     const CampusMainComponent = () => (<CampusMain campuses={this.props.campuses} />);
-    const StudentMainComponent = () => (<StudentGrid mapAll="on" />);
+    const StudentMainComponent = () => (<StudentMain />);
     const HeaderComponent = () => (<Header />);
     const StudentViewComponent = ({match}) => {
       return (
