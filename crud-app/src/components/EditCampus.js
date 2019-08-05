@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import StudentCard from './StudentCard'
+import EditCampusStudentCard from './EditCampusStudentCard'
 import {connect} from 'react-redux'
 import {editCampus} from '../actions'
+import EditCampusStudentGrid from './EditCampusStudentGrid'
 
 class EditCampus extends Component {
     constructor(props) {
@@ -45,7 +46,7 @@ class EditCampus extends Component {
                     </select>
                 </form>
                 <div>
-                    {/* {CONNECT: students in campus} */}
+                    <EditCampusStudentGrid students={this.props.students} />
                 </div>
             </div>
         )
