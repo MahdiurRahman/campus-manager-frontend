@@ -46,7 +46,7 @@ class EditCampus extends Component {
                     </select>
                 </form>
                 <div>
-                    <EditCampusStudentGrid students={this.props.students} />
+                    <EditCampusStudentGrid students={this.props.students.filter(student => (student.college == this.props.campus.id))} />
                 </div>
             </div>
         )

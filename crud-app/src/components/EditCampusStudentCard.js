@@ -5,8 +5,12 @@ import {removeCampusFromStudent} from '../actions/index.js';
 import {connect} from "react-redux";
 
 class EditCampusStudentCard extends Component{
+	constructor(props) {
+		super(props)
+	}
 
-	 removeCampus_(student) {
+	removeCampusFromStudent(student) {
+		console.log(this.props)
         this.props.removeCampusFromStudent(student);
     }
 
