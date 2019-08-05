@@ -118,6 +118,13 @@ const studentsReducer = (oldListOfStudents = students, action) => {
                 }
             }
             return newListOfStudents
+        case 'REMOVE_STUDENT_FROM_CAMPUS':
+            for (let i = 0; newListOfStudents.length; i++) {
+                if (newListOfStudents[i].id == action.payload.id) {
+                    newListOfStudents[i].college = undefined
+                }
+                return newListOfStudents
+            }
         default:
             return oldListOfStudents;
     }

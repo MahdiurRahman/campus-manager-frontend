@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './StudentCard.css';
 import { Link } from 'react-router-dom';
-import {removeCampusFromStudent} from '../actions/index.js';
+import {removeStudentFromCampus} from '../actions/index.js';
 import {connect} from "react-redux";
 
 class EditCampusStudentCard extends Component{
@@ -9,9 +9,9 @@ class EditCampusStudentCard extends Component{
 		super(props)
 	}
 
-	removeCampusFromStudent(student) {
-		console.log(this.props)
-        this.props.removeCampusFromStudent(student);
+	removeStudentFromCampus(student) {
+		console.log("RUNNING")
+        this.props.removeStudentFromCampus(student);
     }
 
 	render(){
@@ -26,15 +26,19 @@ class EditCampusStudentCard extends Component{
 					{this.props.name}
 				</div>
 				</Link>
-				<button onClick={this.removeCampusFromStudent}>remove from campus</button>
+				<button onClick={() => {
+					let obj = { id: this.props.studentId }
+					console.log(obj)
+					this.removeStudentFromCampus(obj)
+				}}>remove from campus</button>
 			</div>
 		);
 	}
 }
 
-const getStateToProps = (State) => {
+const getStateToProps = state => {
 	return {};
 }
 export default connect(getStateToProps, {
-  removeCampusFromStudent: removeCampusFromStudent
+	removeStudentFromCampus: removeStudentFromCampus
 })(EditCampusStudentCard);
