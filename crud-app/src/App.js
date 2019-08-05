@@ -10,6 +10,7 @@ import CampusAddForm from './components/CampusAddForm'
 import StudentMain from './components/StudentMain';
 import StudentAddForm from './components/StudentAddForm';
 import EditCampus from './components/EditCampus'
+import EditStudent from './components/EditStudent';
 import {connect} from "react-redux"
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
@@ -54,6 +55,7 @@ class App extends React.Component{
                   render={() => {
                     return (
                       <StudentView
+                        id={student.id}
                         name={student.name}
                         img={student.img}
                         gpa={student.gpa}
@@ -89,6 +91,18 @@ class App extends React.Component{
                   />
               )
             })}
+           
+           {this.props.students.map(student => {
+                                    return(
+                                           <Route exact path={"/students/" + student.id + "/edit"}
+                                           render={() => {
+                                           return (
+                                                   <EditStudent student={student} />
+                                                   )
+                                           }}
+                                           />
+                                           )
+                                    })}
 
             <Route exact path = "/campusAddForm" render={CampusAddFormComponent}/>
             <Route exact path = "/studentAddForm" render={StudentAddFormComponent} />
