@@ -1,0 +1,10 @@
+.student-nav {
+    background: #919191;
+    height: 40px;
+}
+
+.student-nav-element {
+    display: inline-block;
+    margin: 8px;
+}
+

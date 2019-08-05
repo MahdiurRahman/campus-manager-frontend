@@ -1,17 +1,19 @@
-import React from 'react'
+import React from 'react';
+import EditStudent from './EditStudent';
+import {Link} from 'react-router-dom'
 
 function StudentView(props) {
     return (
-        <div>
+            <div>
             <p>{props.name}</p>
             <img src={props.img} />
             <p>{props.gpa}</p>
             <p>This student is registered to:</p>
             {/* INSERT CAMPUS CARD OVER HERE WITH A PROP SENDING TO CORRECT CAMPUS */}
-            <button>LINK TO EDIT</button>
+            <button><Link to={"/students/" + props.id + "/edit"}>Edit</Link></button>
             <button>LINK AND FUNCTION TO DELETE</button>
-        </div>
-    )
+            </div>
+            )
 }
 
 export default StudentView
