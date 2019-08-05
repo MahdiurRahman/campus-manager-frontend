@@ -26,11 +26,18 @@ export const addStudent = (Student) =>{
     };
 };
 
-export const removeStudent = (Student) => {
+export const removeStudent = student => {
 	return {
 		type: 'REMOVE_STUDENT',
-		payload: Student
-	};
+		payload: student
+	}
+}
+
+export const selectStudent = (Student) => {
+    return {
+      type: "Select Student",
+      payload: Student
+    }
 };
 
 export const editStudent = newStudent => {

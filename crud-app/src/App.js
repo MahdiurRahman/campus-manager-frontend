@@ -33,7 +33,7 @@ class App extends React.Component{
 
   render(){
     const CampusMainComponent = () => (<CampusMain campuses={this.props.campuses} />);
-    const StudentMainComponent = () => (<StudentMain students={this.props.students} campuses={this.props.campuses} getCampusName={this.getCorrespondingCampusName} />);
+    const StudentMainComponent = () => (<StudentGrid mapAll="on" />);
     const HeaderComponent = () => (<Header />);
     const StudentViewComponent = ({match}) => {
       return (
