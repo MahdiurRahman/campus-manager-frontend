@@ -55,7 +55,8 @@ class App extends React.Component{
     <EditCampus campus={this.props.campuses[match.params.id]} />
   )
 	console.log(this.props.campuses);
-        
+  
+  let component = this.props
         return(
           <div id="app">
             <Router>
@@ -64,7 +65,17 @@ class App extends React.Component{
                 <Route exact path = "/students" component={StudentMainComponent} />
                 <Route exact path = "/campuses" render={CampusMainComponent}/>
                 <Route exact path="/students/:id" render={StudentViewComponent} />
-                <Route exact path = "/campuses/:id" render={CampusViewComponent}/>
+                {this.props.campuses.map(campus => {
+                  return (
+                    <Route exact path={"/campuses/" + campus.id} render={() => {
+                      return (
+                        <CampusView 
+                          campus={campus}
+                          students={component.students.filter(student => (campus.id))} />
+                      )
+                    }} />
+                  )
+                })}
                 <Route exact path="/campuses/:id/edit" render={CampusEditForms} />
                 <Route exact path = "/campusAddForm" render={CampusAddFormComponent}/>
                 <Route exact path = "/studentAddForm" render={StudentAddFormComponent} />
