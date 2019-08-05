@@ -68,8 +68,8 @@ class App extends React.Component{
                 <Route exact path={"/campuses/" + campus.id} 
                   render={() => {
                     return (
-                      <CampusView 
-                        campus={campus}
+                      <CampusView
+                        campus_id={campus.id}
                         students={component.students.filter(student => (student.college == campus.id))} />
                     )
                   }}
