@@ -108,6 +108,8 @@ const studentsReducer = (oldListOfStudents = students, action) => {
     switch(action.type){
         case "ADD_STUDENT":
             return oldListOfStudents.concat(action.payload);
+        case "REMOVE_STUDENT":
+            return oldListOfStudents.filter(student => (student !== action.payload.id))
         default:
             return oldListOfStudents;
     }

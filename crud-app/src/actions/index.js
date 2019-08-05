@@ -33,6 +33,13 @@ export const addStudent = (Student) =>{
     };
 };
 
+export const removeStudent = student => {
+	return {
+		type: 'REMOVE_STUDENT',
+		payload: student
+	}
+}
+
 export const selectStudent = (Student) => {
     return {
     type: "Select Student",
