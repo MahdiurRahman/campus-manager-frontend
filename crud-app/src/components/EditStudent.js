@@ -1,21 +1,35 @@
-
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {editStudent} from '../actions'
+import {Redirect} from 'react-router'
 
 class EditStudent extends Component {
     constructor(props) {
         super(props)
+
         this.state =
         {
-        id: props.student.id,
-        name: props.student.name,
-        gpa: props.student.gpa,
-        img: props.student.img,
-        college: props.student.college
+            id: props.student.id,
+            name: props.student.name,
+            gpa: props.student.gpa,
+            img: props.student.img,
+            college: props.student.college,
+            Redirect: false
         }
         this.onChangeHandler = this.onChangeHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
+    }
+
+    componentDidMount() {
+        let currentStudent = this.props.students.find(student => (student.id === this.props.student.id));
+
+        this.setState({
+            id: currentStudent.id,
+            name: currentStudent.name,
+            gpa: currentStudent.gpa,
+            img: currentStudent.img,
+            college: currentStudent.college
+        })
     }
     
     onChangeHandler = event => {
@@ -27,9 +41,15 @@ class EditStudent extends Component {
     onSubmitHandler = event => {
         event.preventDefault()
         this.props.editStudent(this.state)
+        this.setState({redirect: true})
     }
     
     render() {
+        if (this.state.redirect) {
+            return (
+                <Redirect to={"/students/" + this.state.id}/>
+            );
+        }
         return (
                 <div>
                 <form onSubmit={this.onSubmitHandler}>
@@ -44,7 +64,7 @@ class EditStudent extends Component {
 }
 
 const mapStateToProps = state => {
-    return state
+    return {students: state.students}
 }
 
 export default connect(mapStateToProps, {
