@@ -19,6 +19,13 @@ export const editCampus = newCampus => {
 	};
 };
 
+export const selectCampus = (Campus) => {
+    return {
+        type: "SELECT_CAMPUS",
+        payload: Campus
+    }
+};
+
 export const addStudent = (Student) =>{
     return {
     	type: 'ADD_STUDENT',

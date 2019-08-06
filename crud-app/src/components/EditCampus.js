@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import EditCampusStudentCard from './EditCampusStudentCard'
 import {connect} from 'react-redux'
 import {editCampus} from '../actions'
+import {selectCampus} from '../actions'
 import {editStudent} from '../actions'
 import EditCampusStudentGrid from './EditCampusStudentGrid'
 import {Redirect} from 'react-router'
@@ -18,6 +19,7 @@ class EditCampus extends Component {
             img: props.campus.img,
             redirect: false
         }
+        this.props.selectCampus(this.props.campus);
         this.onChangeHandler = this.onChangeHandler.bind(this)
     }
 
@@ -85,5 +87,6 @@ const mapStateToProps = State => {
 
 export default connect(mapStateToProps, {
     editCampus,
+    selectCampus,
     editStudent
 })(EditCampus)
