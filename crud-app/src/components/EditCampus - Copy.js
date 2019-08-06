@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import EditCampusStudentCard from './EditCampusStudentCard'
+import StudentCard from './StudentCard'
 import {connect} from 'react-redux'
 import {editCampus} from '../actions'
 import {editStudent} from '../actions'
-import EditCampusStudentGrid from './EditCampusStudentGrid'
 import {Redirect} from 'react-router'
 
 class EditCampus extends Component {
@@ -23,7 +22,7 @@ class EditCampus extends Component {
 
     onChangeHandler = event => {
         this.setState({
-            [event.target.name]: event.target.value
+            [event.target.name]: [event.target.value]
         })
     }
 
@@ -66,13 +65,13 @@ class EditCampus extends Component {
                     <button>Save Changes</button>
                     <select name="student">
                         <option>Select student...</option>
-                        {this.props.students.filter(student => (student.college != this.props.campus.id)).map((student) => (
+                        {this.props.students.filter(student => (student.college !== this.props.campus.id)).map((student) => (
                             <option>{student.name}</option>
                         ))}
                     </select>
                 </form>
                 <div>
-                    <EditCampusStudentGrid students={this.props.students.filter(student => (student.college == this.props.campus.id))} />
+                    {/* {CONNECT: students in campus} */}
                 </div>
             </div>
         )
