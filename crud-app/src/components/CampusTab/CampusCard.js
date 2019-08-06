@@ -1,9 +1,8 @@
-import React from "react"
-import "./CampusCard.css"
-import {connect} from "react-redux"
-import {Redirect} from 'react-router';
-import {removeCampus, removeCampusFromStudent} from '../actions/index.js'
-import {Link} from 'react-router-dom'
+import React from "react";
+import "./CampusCard.css";
+import {connect} from "react-redux";
+import {removeCampus, removeCampusFromStudent} from '../../actions/index.js';
+import {Link} from 'react-router-dom';
 
 class CampusCard extends React.Component {
 	constructor(props) {

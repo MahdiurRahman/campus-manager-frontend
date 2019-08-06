@@ -1,9 +1,7 @@
 import React, {Component} from "react";
-import Header from './Header.js';
 import StudentGrid from "./StudentGrid.js";
 import "./StudentMain.css";
 import {Link} from "react-router-dom";
-import {connect} from 'react-redux';
 
 class StudentMain extends Component {
     render() {

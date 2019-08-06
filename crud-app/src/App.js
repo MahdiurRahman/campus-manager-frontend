@@ -1,16 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Header from './components/Header.js';
-import StudentGrid from './components/StudentGrid.js';
-import StudentView from './components/StudentView'
-import CampusView from './components/CampusView'
-import CampusMain from './components/CampusMain'
-import CampusAddForm from './components/CampusAddForm'
-import StudentMain from './components/StudentMain';
-import StudentAddForm from './components/StudentAddForm';
-import EditCampus from './components/EditCampus'
-import EditStudent from './components/EditStudent';
+import Header from './components/Header';
+import StudentView from './components/StudentTab/StudentView'
+import CampusView from './components/CampusTab/CampusView'
+import CampusMain from './components/CampusTab/CampusMain'
+import CampusAddForm from './components/CampusTab/CampusAddForm'
+import StudentMain from './components/StudentTab/StudentMain';
+import StudentAddForm from './components/StudentTab/StudentAddForm';
+import EditCampus from './components/CampusTab/EditCampus'
+import EditStudent from './components/StudentTab/EditStudent';
 import {connect} from "react-redux"
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
