@@ -1,9 +1,7 @@
 import React from "react";
-import Header from './Header.js';
 import CampusGrid from "./CampusGrid.js";
 import "./CampusMain.css";
 import {Link} from "react-router-dom";
-import {connect} from 'react-redux';
 
 class CampusMain extends React.Component {
     render() {

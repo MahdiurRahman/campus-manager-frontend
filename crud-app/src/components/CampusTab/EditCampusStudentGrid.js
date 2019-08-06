@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
-import Header from './Header.js';
-import StudentCard from './CampusStudentCard.js';
-import './StudentGrid.css';
-import { Link } from 'react-router-dom';
+import EditCampusStudentCard from './EditCampusStudentCard';
 
 class CampusStudentGrid extends Component{
 
@@ -14,7 +11,7 @@ class CampusStudentGrid extends Component{
 				</div>
 				<div className="studentGridView">
 					{this.props.students.map(singleStudent => (
-						<StudentCard name={singleStudent.name} campusName={singleStudent.college} imageLink={singleStudent.img} />
+						<EditCampusStudentCard student={singleStudent}/>
 						))}
 				</div>
 			</div>

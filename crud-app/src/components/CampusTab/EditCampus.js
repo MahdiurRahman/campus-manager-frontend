@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import EditCampusStudentCard from './EditCampusStudentCard'
 import {connect} from 'react-redux'
-import {editCampus} from '../actions'
-import {selectCampus} from '../actions'
-import {editStudent} from '../actions'
+import {editCampus} from '../../actions'
+import {selectCampus} from '../../actions'
+import {editStudent} from '../../actions'
 import EditCampusStudentGrid from './EditCampusStudentGrid'
 import {Redirect} from 'react-router'
 

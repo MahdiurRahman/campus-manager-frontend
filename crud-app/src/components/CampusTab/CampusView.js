@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import CampusStudentGrid from './CampusStudentGrid.js'
-import StudentGrid from './StudentGrid'
+import StudentGrid from '../StudentTab/StudentGrid'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {removeCampus, removeCampusFromStudent} from '../actions/index.js'
+import {removeCampus, removeCampusFromStudent} from '../../actions'
 
 class CampusView extends Component {
     constructor(props) {

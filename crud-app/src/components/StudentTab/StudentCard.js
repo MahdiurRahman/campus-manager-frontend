@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './StudentCard.css';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux'
-import {removeStudent} from '../actions'
+import {removeStudent} from '../../actions'
 
 class StudentCard extends Component{
 	constructor(props) {

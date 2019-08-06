@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import {connect} from 'react-redux'
-import {editStudent} from '../actions'
-import {Redirect} from 'react-router'
+import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import {editStudent} from '../../actions';
+import {Redirect} from 'react-router';
 
 class EditStudent extends Component {
     constructor(props) {

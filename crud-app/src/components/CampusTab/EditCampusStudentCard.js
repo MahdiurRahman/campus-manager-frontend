@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import './StudentCard.css';
 import { Link } from 'react-router-dom';
-import {removeStudentFromCampus} from '../actions/index.js';
+import {removeStudentFromCampus} from '../../actions';
 import {connect} from "react-redux";
 import {Redirect} from "react-router";
 

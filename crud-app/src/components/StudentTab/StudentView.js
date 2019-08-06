@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import EditStudent from './EditStudent';
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {removeStudent} from '../actions'
+import {removeStudent} from '../../actions'
 
 class StudentView extends Component {
     constructor(props) {

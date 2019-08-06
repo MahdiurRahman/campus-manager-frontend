@@ -1,7 +1,6 @@
-import React from "react"
-import {Link} from "react-router-dom";
+import React from "react";
 import {connect} from 'react-redux';
-import {addCampus} from '../actions/index.js';
+import {addCampus} from '../../actions';
 import {Redirect} from 'react-router';
 
 class CampusAddForm extends React.Component {
