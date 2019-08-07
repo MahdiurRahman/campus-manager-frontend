@@ -115,8 +115,8 @@ const studentsReducer = (oldListOfStudents = students, action) => {
             for (let i = 0; i < newListOfStudents.length; i++) {
                 if (newListOfStudents[i].college == action.payload.id) {
                     newListOfStudents[i].college = undefined
-                    return newListOfStudents
                 }
+                return newListOfStudents
             }
         case 'REMOVE_STUDENT_FROM_CAMPUS':
             for (let i = 0; newListOfStudents.length; i++) {

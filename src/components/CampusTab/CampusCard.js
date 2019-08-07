@@ -11,8 +11,8 @@ class CampusCard extends React.Component {
 	}
 
 	removeCampus() {
-    this.props.removeCampus(this.props.campus);
     this.props.removeCampusFromStudent(this.props.campus);
+    this.props.removeCampus(this.props.campus);
   }
 
     render() {
