@@ -70,12 +70,14 @@ class StudentView extends Component {
             <p>{this.state.student.name}</p>
             <img src={this.state.student.img} />
             <p>{this.state.student.gpa}</p>
-            <p>This student is registered to:</p>
             <div className="campusCard">
                 {this.state.student.college !== undefined && currentCampus !== undefined ?
-                    <Link to={"/campuses/" + this.state.student.college}>
-                        <StudentViewCampusCard campus = {currentCampus} />
-                    </Link>
+                	<div>
+                		<p>This student is registered to:</p>
+                    	<Link to={"/campuses/" + this.state.student.college}>
+                        	<StudentViewCampusCard campus = {currentCampus} />
+                    	</Link>
+                    </div>
                     :
                     "Not Enrolled"
                 }
