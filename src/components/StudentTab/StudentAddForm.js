@@ -16,7 +16,6 @@ class StudentAddForm extends Component {
         e.preventDefault();
         
         let student = {
-        id: e.target.elements.id.value,
             name: e.target.elements.name.value,
             img: 'https://d29fhpw069ctt2.cloudfront.net/icon/image/49320/preview.svg'
         }
@@ -28,10 +27,6 @@ class StudentAddForm extends Component {
         if (!this.state.redirect) {
             return (
                     <form onSubmit={this.addStudent}>
-                        <label>
-                            ID:
-                            <input type="number" name="id" />
-                        </label>
                         <label>
                             Name:
                             <input type="text" name="name" />
