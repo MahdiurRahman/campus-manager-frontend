@@ -108,7 +108,6 @@ const studentsReducer = (oldListOfStudents = students, action) => {
         case "ADD_STUDENT":
             action.payload.id = curStudentId;
             curStudentId++;
-            console.log(curStudentId + " current id");
             return oldListOfStudents.concat(action.payload);
 		case "REMOVE_STUDENT":
             return oldListOfStudents.filter(Student => (Student.id !== action.payload.id));
