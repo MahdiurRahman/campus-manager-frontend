@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {removeStudent} from '../../actions'
+import StudentViewCampusCard from './StudentViewCampusCard'
 
 class StudentView extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
 
     removeStudent(student) {
@@ -20,13 +21,31 @@ class StudentView extends Component {
                 student = this.props.students[i]
             }
         }
+
+        let currentCampus = undefined;
+    for (let i = 0; i < this.props.campuses.length; i++){
+        console.log(this.props.campuses[i].id + " ID");
+        if (this.props.campuses[i].id == student.college){
+        currentCampus = this.props.campuses[i];
+        break;
+      }
+    }
+
         return (
             <div>
             <p>{student.name}</p>
             <img src={student.img} />
             <p>{student.gpa}</p>
             <p>This student is registered to:</p>
-            {/* INSERT CAMPUS CARD OVER HERE WITH A PROP SENDING TO CORRECT CAMPUS */}
+            <div className="campusCard">
+                {student.college !== undefined ?
+                    <Link to={"/campuses/" + student.college}>
+                        <StudentViewCampusCard campus = {currentCampus} />
+                    </Link>
+                    :
+                    "Not Enrolled"
+                }
+                </div>
             <Link to={"/students/" + student.id + "/edit"}><button>Edit</button></Link>
             <button onClick={() => this.removeStudent(student)}>delete</button>
             </div>
@@ -36,7 +55,8 @@ class StudentView extends Component {
 
 const mapStateToProps = state => {
     return {
-        students: state.students
+        students: state.students,
+        campuses: state.campuses
     }
 }
 
