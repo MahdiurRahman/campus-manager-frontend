@@ -72,7 +72,7 @@ class StudentView extends Component {
             <p>{this.state.student.gpa}</p>
             <p>This student is registered to:</p>
             <div className="campusCard">
-                {this.state.student.college !== undefined ?
+                {this.state.student.college !== undefined && currentCampus !== undefined ?
                     <Link to={"/campuses/" + this.state.student.college}>
                         <StudentViewCampusCard campus = {currentCampus} />
                     </Link>
