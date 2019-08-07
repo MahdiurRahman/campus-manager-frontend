@@ -1,9 +1,38 @@
+.campus-main {
+    width: 750px;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 10px;
+}
+
 .campus-nav {
-    background: #919191;
-    height: 40px;
+    background: rgba(59, 67, 79, 0.8);
+    height: 42px;
+    width: 100%;
+}
+
+.campus-nav-title {
+    display: inline-block;
+    margin: 8px 30px;
+    color: #84a2cf;
+    text-shadow: 1px 1px rgba(132, 162, 207, 0.2);
+    font-size: 14pt;
+    font-weight: bold;
+    float: left;
 }
 
 .campus-nav-element {
     display: inline-block;
-    margin: 8px;
+    margin: 9px 18px;
+    color: #84a2cf;
+    text-decoration: none;
+    text-shadow: 1px 1px rgba(132, 162, 207, 0.2);
+    font-size: 12pt;
+    float: right;
+    border-bottom: 1px solid rgb(132, 162, 207);
+    padding: 0 1px;
+}
+
+.campus-grid {
+
 }
