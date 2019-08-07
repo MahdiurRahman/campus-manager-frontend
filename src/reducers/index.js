@@ -82,6 +82,11 @@ let students = [
     }
 ];
 
+//this value will be used to assign an ID to new students.
+//after each student addition, this value increments, and its value never derceases
+let curStudentId = 9; 
+
+
 const campusesReducer = (oldListofCampus = campuses, action) => {
 	switch(action.type) {
 		case "ADD_CAMPUS":
@@ -101,7 +106,9 @@ const studentsReducer = (oldListOfStudents = students, action) => {
     let newListOfStudents = oldListOfStudents
     switch(action.type){
         case "ADD_STUDENT":
-            action.payload.id = oldListOfStudents.length;
+            action.payload.id = curStudentId;
+            curStudentId++;
+            console.log(curStudentId + " current id");
             return oldListOfStudents.concat(action.payload);
 		case "REMOVE_STUDENT":
             return oldListOfStudents.filter(Student => (Student.id !== action.payload.id));
