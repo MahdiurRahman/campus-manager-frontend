@@ -31,7 +31,7 @@ class StudentCard extends Component{
 					</div>
 				</Link>
 				<div className="campusName">
-				{this.findCollegeName(this.props.student.college) !== "undefined" ?
+				{this.props.student.college !== undefined ?
 					<Link to={"/campuses/" + this.props.student.college}>
 						{this.findCollegeName(this.props.student.college)}
 					</Link>

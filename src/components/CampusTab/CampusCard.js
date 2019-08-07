@@ -34,8 +34,11 @@ class CampusCard extends React.Component {
     }
 }
 
-const getStateToProps = (State) => {
-	return {};
+const getStateToProps = (state) => {
+	return {
+    students: state.students,
+    campuses: state.campuses
+  };
 }
 export default connect(getStateToProps, {
   removeCampus: removeCampus,
