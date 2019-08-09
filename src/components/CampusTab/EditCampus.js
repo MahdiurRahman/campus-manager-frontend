@@ -16,6 +16,8 @@ class EditCampus extends Component {
             bio: props.campus.bio,
             address: props.campus.address,
             img: props.campus.img,
+            nameIsCorrect: true,
+			addressIsCorrect: true,
             redirect: false
         }
         this.props.selectCampus(this.props.campus);
@@ -30,7 +32,35 @@ class EditCampus extends Component {
 
     onSubmitHandler = event => {
         event.preventDefault()
-        this.props.editCampus(this.state)
+
+        let correctName = true;
+        if (this.state.name.length < 1){
+            correctName = false;
+        }
+        for (let i = 0; i < this.state.name.length; i++){
+            if (!(this.state.name[i].toLowerCase() != this.state.name[i].toUpperCase() || this.state.name[i] == " ")){
+                correctName = false;
+            }
+        }
+
+        let correctAddress = true;
+        if (this.state.address.length < 1){
+            correctAddress = false;
+        }
+        for (let i = 0; i < this.state.address.length; i++){
+            if (!(this.state.address[i].toLowerCase() != this.state.address[i].toUpperCase() || this.state.address[i] == " " || this.state.address[i] == "," || (this.state.address[i] >= 0 && this.state.address[i] <= 9))){
+                correctAddress = false;
+            }
+        }
+
+        this.setState({
+        	nameIsCorrect: correctName,
+        	addressIsCorrect: correctAddress
+        })
+
+        if (correctName && correctAddress){
+        	this.props.editCampus(this.state)
+    	}
 
         let name = event.target.student.value;
         let student = undefined;
@@ -48,7 +78,9 @@ class EditCampus extends Component {
             console.log(student);
             this.props.editStudent(student);
         }
-        this.setState({redirect: true});
+        if (correctName && correctAddress){
+        	this.setState({redirect: true});
+    	}
     }
 
     render() {
@@ -72,6 +104,19 @@ class EditCampus extends Component {
                         ))}
                     </select>
                 </form>
+                <div className="inputErrors">
+                	<div>
+                		{this.state.nameIsCorrect ?
+                			"" :
+                			"Name must be at least one character long and must contain only letters and spaces"
+                		}
+                	</div>
+                	<div>
+                		{this.state.addressIsCorrect ?
+                			"" :
+                			"Address must not be empty, and can consist only of letters, numbers, and spaces"}
+                	</div>
+                </div>
                 <div>
                     <EditCampusStudentGrid students={this.props.students.filter(student => (student.college == this.props.campus.id))} />
                 </div>
