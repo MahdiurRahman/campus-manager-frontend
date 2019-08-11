@@ -39,7 +39,7 @@ class CampusAddForm extends React.Component {
             correctAddress = false;
         }
         for (let i = 0; i < campus.address.length; i++){
-            if (!(campus.address[i].toLowerCase() != campus.address[i].toUpperCase() || campus.address[i] == " " || this.state.address[i] == "," || (campus.address[i] >= 0 && campus.address[i] <= 9))){
+            if (!(campus.address[i].toLowerCase() != campus.address[i].toUpperCase() || campus.address[i] == " " || campus.address[i] == "," || (campus.address[i] >= 0 && campus.address[i] <= 9))){
                 correctAddress = false;
             }
         }
