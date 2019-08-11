@@ -31,9 +31,9 @@ class StudentCard extends Component{
 					</div>
 				</Link>
 				<div className="campusName">
-				{this.props.student.college !== undefined ?
-					<Link to={"/campuses/" + this.props.student.college}>
-						{this.findCollegeName(this.props.student.college)}
+				{this.props.student.campusId !== undefined ?
+					<Link to={"/campuses/" + this.props.student.campusId}>
+						{this.findCollegeName(this.props.student.campusId)}
 					</Link>
 					:
 					"Not Enrolled"

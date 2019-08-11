@@ -50,7 +50,7 @@ class StudentView extends Component {
                 }
             }
             let newStudent = this.state.student;
-            newStudent.college = newCampus;
+            newStudent.campusId = newCampus;
             this.props.editStudent(newStudent);
         }
     }
@@ -59,7 +59,7 @@ class StudentView extends Component {
     let currentCampus = undefined;
     for (let i = 0; i < this.props.campuses.length; i++){
         console.log(this.props.campuses[i].id + " ID");
-        if (this.props.campuses[i].id == this.state.student.college){
+        if (this.props.campuses[i].id == this.state.student.campusId){
         currentCampus = this.props.campuses[i];
         break;
       }
@@ -71,10 +71,10 @@ class StudentView extends Component {
             <img src={this.state.student.img} />
             <p>{this.state.student.gpa}</p>
             <div className="campusCard">
-                {this.state.student.college !== undefined && currentCampus !== undefined ?
+                {this.state.student.campusId !== undefined && currentCampus !== undefined ?
                 	<div>
                 		<p>This student is registered to:</p>
-                    	<Link to={"/campuses/" + this.state.student.college}>
+                    	<Link to={"/campuses/" + this.state.student.campusId}>
                         	<StudentViewCampusCard campus = {currentCampus} />
                     	</Link>
                     </div>
