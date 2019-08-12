@@ -9,8 +9,9 @@ import StudentMain from './components/StudentTab/StudentMain';
 import StudentAddForm from './components/StudentTab/StudentAddForm';
 import EditCampus from './components/CampusTab/EditCampus'
 import EditStudent from './components/StudentTab/EditStudent';
-import {connect} from "react-redux"
+import {connect} from "react-redux";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {updateCampus} from './actions/index';
 
 class App extends React.Component{
   constructor(props)
@@ -112,7 +113,7 @@ const getStateToProps = (state) => {
 	return {
     campuses: state.campuses,
     students: state.students
-    };
+  };
 }
 
 export default connect(getStateToProps)(App);

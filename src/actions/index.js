@@ -19,6 +19,12 @@ export const editCampus = newCampus => {
 	};
 };
 
+export const updateCampus = () => {
+	return {
+		type: 'UPDATE_CAMPUS'
+	}
+};
+
 export const selectCampus = (Campus) => {
     return {
         type: "SELECT_CAMPUS",

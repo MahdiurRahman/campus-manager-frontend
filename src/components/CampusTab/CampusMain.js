@@ -12,7 +12,7 @@ class CampusMain extends React.Component {
                   <div className="campus-nav-element nav-title">All Campuses</div>
                   <Link to="/campusAddForm" className="campus-nav-element">Add Campus</Link>
                 </div>
-                <CampusGrid campuses={this.props.campuses}/>
+                <CampusGrid campuses={this.props.getCampuses}/>
               </div>
             </div>
         );
