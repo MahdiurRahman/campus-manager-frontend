@@ -1,5 +1,4 @@
 .App {
-  background: url("./assets/bg.png") center no-repeat;
-  height: 100vh;
+  min-height: 100vh;
   
 }
