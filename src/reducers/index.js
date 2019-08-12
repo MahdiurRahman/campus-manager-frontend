@@ -14,15 +14,19 @@ let curStudentId = 1;
 
 
 const campusesReducer = (oldListofCampus = campuses, action) => {
+    let newListOfCampus = oldListofCampus;
 	switch(action.type) {
 		case "ADD_CAMPUS":
 			return oldListofCampus.concat(action.payload);
 		case "REMOVE_CAMPUS":
             return oldListofCampus.filter(Campus => (Campus.id !== action.payload.id));
         case "EDIT_CAMPUS":
-            let newListOfCampus = oldListofCampus
-            newListOfCampus[action.payload.id] = action.payload
-            return newListOfCampus
+            for (let i = 0; i < newListOfCampus.length; i++) {
+                if (newListOfCampus[i].id == action.payload.id) {
+                    newListOfCampus[i] = action.payload;
+                }
+            }
+            return newListOfCampus;
 		default:
 			return oldListofCampus;
 	}

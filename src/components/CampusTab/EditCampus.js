@@ -81,20 +81,17 @@ class EditCampus extends Component {
         }
         if (correctName && correctAddress){
             //this.props.editStudent(this.state)
-            console.log(this.state.id);
             let url ='http://localhost:5000/api/campuses/' + this.state.id;
-            console.log(url);
             const that = this;
-            console.log(that.state);
             await axios.put(url,{
                 name: this.state.name,
                 bio : this.state.bio,
                 address : this.state.address,
                 img: this.state.img
             })
-            .then (async res => {
+            .then (res => {
                 //let singleStudent = res.body
-                await this.props.editCampus(that.state);
+                this.props.editCampus(that.state);
             })
             .catch(err => console.log(err));
 
