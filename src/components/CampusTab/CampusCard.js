@@ -11,8 +11,8 @@ class CampusCard extends React.Component {
 	}
 
 	removeCampus() {
-    this.props.removeCampus(this.props.campus);
     this.props.removeCampusFromStudent(this.props.campus);
+    this.props.removeCampus(this.props.campus);
   }
 
     render() {
@@ -34,8 +34,11 @@ class CampusCard extends React.Component {
     }
 }
 
-const getStateToProps = (State) => {
-	return {};
+const getStateToProps = (state) => {
+	return {
+    students: state.students,
+    campuses: state.campuses
+  };
 }
 export default connect(getStateToProps, {
   removeCampus: removeCampus,

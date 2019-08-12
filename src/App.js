@@ -9,7 +9,12 @@ import StudentMain from './components/StudentTab/StudentMain';
 import StudentAddForm from './components/StudentTab/StudentAddForm';
 import EditCampus from './components/CampusTab/EditCampus'
 import EditStudent from './components/StudentTab/EditStudent';
-import {connect} from "react-redux"
+import {connect} from "react-redux";
+import axios from 'axios';
+import {addStudent} from './actions';
+import {addCampus} from './actions';
+import {editStudent} from './actions';
+import {editCampus} from './actions';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 class App extends React.Component{
@@ -18,9 +23,40 @@ class App extends React.Component{
     super(props);
     this.state ={
       selectedCampus: null,
-      selectedStudent: null
+      selectedStudent: null,
+    students: [],
+    campuses: []
     }
+      this.getStudents = this.getStudents.bind(this);
+      this.getCampuses = this.getCampuses.bind(this);
   }
+    
+    componentDidMount(){
+        this.getCampuses();
+        this.getStudents();
+    }
+    
+    async getStudents(){
+        await axios.get('http://localhost:3000/api/students')
+        .then (response => {
+               let result = response.data;
+               for (let i = 0; i < result.length; i++){
+                this.props.addStudent(result[i]);
+               }
+               })
+        .catch(err => console.log(err));
+    }
+    
+    async getCampuses(){
+        await axios.get('http://localhost:3000/api/campuses')
+        .then (response => {
+               let result = response.data;
+               for (let i = 0; i < result.length; i++){
+                this.props.addCampus(result[i]);
+               }
+               })
+        .catch(err => console.log(err));
+    }
 
   getCorrespondingCampusName = (campusId) =>{
   	for (let i = 0; i < this.props.campuses.length; i++){
@@ -67,7 +103,7 @@ class App extends React.Component{
                     return (
                       <CampusView
                         campus_id={campus.id}
-                        students={component.students.filter(student => (student.college == campus.id))} />
+                        students={component.students.filter(student => (student.campusId == campus.id))} />
                     )
                   }}
                 />
@@ -115,4 +151,9 @@ const getStateToProps = (state) => {
     };
 }
 
-export default connect(getStateToProps)(App);
+export default connect(getStateToProps, {
+                       addStudent,
+                       addCampus,
+                       editStudent,
+                       editCampus
+                       })(App);

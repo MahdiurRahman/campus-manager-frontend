@@ -13,7 +13,9 @@ class EditStudent extends Component {
             name: props.student.name,
             gpa: props.student.gpa,
             img: props.student.img,
-            college: props.student.college,
+            campusId: props.student.campusId,
+            nameIsCorrect: true,
+            gpaIsCorrect: true,
             Redirect: false
         }
         this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -28,7 +30,7 @@ class EditStudent extends Component {
             name: currentStudent.name,
             gpa: currentStudent.gpa,
             img: currentStudent.img,
-            college: currentStudent.college
+            campusId: currentStudent.campusId
         })
     }
     
@@ -40,8 +42,27 @@ class EditStudent extends Component {
     
     onSubmitHandler = event => {
         event.preventDefault()
-        this.props.editStudent(this.state)
-        this.setState({redirect: true})
+        let correctName = true;
+        let correctGPA = true;
+        if (this.state.name.length < 1){
+            correctName = false;
+        }
+        for (let i = 0; i < this.state.name.length; i++){
+            if (!(this.state.name[i].toLowerCase() != this.state.name[i].toUpperCase() || this.state.name[i] == " ")){
+                correctName = false;
+            }
+        }
+        if (this.state.gpa < 0 || this.state.gpa > 4){
+            correctGPA = false;
+        }
+        this.setState({
+            nameIsCorrect: correctName,
+            gpaIsCorrect: correctGPA
+        })
+        if (correctName && correctGPA){
+            this.props.editStudent(this.state)
+            this.setState({redirect: true})
+        }
     }
     
     render() {
@@ -58,6 +79,18 @@ class EditStudent extends Component {
                 <input name="img" type="text" placeholder="Image URL" value={this.state.img} onChange={this.onChangeHandler} />
                 <input type="submit" value="Save Changes" />
                 </form>
+                <div className="inputErrors">
+                    <div>
+                        {this.state.nameIsCorrect ? 
+                        "" :
+                        "Name must be at least one character long and must contain only letters and spaces"}
+                        </div>
+                        <div>
+                        {this.state.gpaIsCorrect ?
+                        "":
+                        "GPA must be withing the range of 0 and 4"}
+                        </div>
+                </div>
                 </div>
                 )
     }

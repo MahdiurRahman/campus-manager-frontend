@@ -7,7 +7,9 @@ class CampusAddForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			redirect: false
+			redirect: false,
+			nameIsCorrect: true,
+			addressIsCorrect: true
 		}
 		this.addCampus = this.addCampus.bind(this);
 	}
@@ -22,13 +24,40 @@ class CampusAddForm extends React.Component {
 			address: e.target.elements.address.value,
 			img: 'https://png.pngtree.com/svg/20170616/22811e059c.svg'
 		}
-		this.props.addCampus(campus);
-		this.setState({redirect: true});
+
+		let correctName = true;
+        if (campus.name.length < 1){
+            correctName = false;
+        }
+        for (let i = 0; i < campus.name.length; i++){
+            if (!(campus.name[i].toLowerCase() != campus.name[i].toUpperCase() || campus.name[i] == " ")){
+                correctName = false;
+            }
+        }
+        let correctAddress = true;
+        if (campus.address.length < 1){
+            correctAddress = false;
+        }
+        for (let i = 0; i < campus.address.length; i++){
+            if (!(campus.address[i].toLowerCase() != campus.address[i].toUpperCase() || campus.address[i] == " " || campus.address[i] == "," || (campus.address[i] >= 0 && campus.address[i] <= 9))){
+                correctAddress = false;
+            }
+        }
+        this.setState({
+        	nameIsCorrect: correctName,
+        	addressIsCorrect: correctAddress
+        })
+
+        if (correctName && correctAddress){
+			this.props.addCampus(campus);
+			this.setState({redirect: true});
+		}
 	}
 
 	render() {
 		if (!this.state.redirect) {
 			return (
+				<div>
 				<form onSubmit={this.addCampus}>
 				  <label>
 					Name:
@@ -44,6 +73,17 @@ class CampusAddForm extends React.Component {
 				  </label>
 				  <input type="submit" value="Submit"/>
 				</form>
+				<div className="inputErrors">
+					<div>
+						{this.state.nameIsCorrect ? 
+							"" :
+							"Name must be at least one character long and must contain only letters and spaces"}
+					</div>
+						{this.state.addressIsCorrect ? 
+							"" :
+							"Address must not be empty, and can consist only of letters, numbers, and spaces"}
+				</div>
+				</div>
 			);
 		} else {
 			return (
