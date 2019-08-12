@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {editStudent} from '../../actions';
 import {Redirect} from 'react-router';
+import axios from 'axios';
 
 class EditStudent extends Component {
     constructor(props) {
@@ -40,7 +41,7 @@ class EditStudent extends Component {
                       })
     }
     
-    onSubmitHandler = event => {
+    onSubmitHandler = async event => {
         event.preventDefault()
         let correctName = true;
         let correctGPA = true;
@@ -60,7 +61,23 @@ class EditStudent extends Component {
             gpaIsCorrect: correctGPA
         })
         if (correctName && correctGPA){
-            this.props.editStudent(this.state)
+            //this.props.editStudent(this.state)
+            console.log(this.state.id);
+            let url ='http://localhost:5000/api/students/' + this.state.id;
+            console.log(url);
+            const that = this;
+            console.log(that.state);
+            await axios.put(url,{
+                name: this.state.name,
+                gpa : this.state.gpa,
+                img : this.state.img,
+                campusId: this.state.campusId
+            })
+            .then (res => {
+                //let singleStudent = res.body
+                this.props.editStudent(that.state);
+            })
+            .catch(err => console.log(err));
             this.setState({redirect: true})
         }
     }

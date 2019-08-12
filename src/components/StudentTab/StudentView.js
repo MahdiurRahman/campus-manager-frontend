@@ -18,7 +18,6 @@ class StudentView extends Component {
 
     componentDidMount(){
         let currentStudent;
-        console.log(this.props.student_id)
         for (let i = 0; i < this.props.students.length; i++) {
             if (this.props.students[i].id == this.props.student_id) {
                 currentStudent = this.props.students[i]
@@ -58,7 +57,6 @@ class StudentView extends Component {
     render() {
     let currentCampus = undefined;
     for (let i = 0; i < this.props.campuses.length; i++){
-        console.log(this.props.campuses[i].id + " ID");
         if (this.props.campuses[i].id == this.state.student.campusId){
         currentCampus = this.props.campuses[i];
         break;

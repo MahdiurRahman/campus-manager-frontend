@@ -47,7 +47,6 @@ class StudentCard extends Component{
 }
 
 const getStateToProps = state => {
-	console.log(state)
 	return {
 		students: state.students,
 		campuses: state.campuses
