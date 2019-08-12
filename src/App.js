@@ -37,7 +37,7 @@ class App extends React.Component{
     }
     
     async getStudents(){
-        await axios.get('http://localhost:3000/api/students')
+        await axios.get('http://localhost:3003/api/students')
         .then (response => {
                let result = response.data;
                for (let i = 0; i < result.length; i++){
@@ -48,7 +48,7 @@ class App extends React.Component{
     }
     
     async getCampuses(){
-        await axios.get('http://localhost:3000/api/campuses')
+        await axios.get('http://localhost:3003/api/campuses')
         .then (response => {
                let result = response.data;
                for (let i = 0; i < result.length; i++){
