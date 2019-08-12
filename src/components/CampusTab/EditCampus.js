@@ -74,7 +74,7 @@ class EditCampus extends Component {
         if (student) {
             console.log(student);
             console.log(this.props.campus.id);
-            student.college = this.props.campus.id;
+            student.campusId = this.props.campus.id;
             console.log(student);
             this.props.editStudent(student);
         }
@@ -99,7 +99,7 @@ class EditCampus extends Component {
                     <button>Save Changes</button>
                     <select name="student">
                         <option>Select student...</option>
-                        {this.props.students.filter(student => (student.college != this.props.campus.id)).map((student) => (
+                        {this.props.students.filter(student => (student.campusId != this.props.campus.id)).map((student) => (
                             <option>{student.name}</option>
                         ))}
                     </select>
@@ -118,7 +118,7 @@ class EditCampus extends Component {
                 	</div>
                 </div>
                 <div>
-                    <EditCampusStudentGrid students={this.props.students.filter(student => (student.college == this.props.campus.id))} />
+                    <EditCampusStudentGrid students={this.props.students.filter(student => (student.campusId == this.props.campus.id))} />
                 </div>
             </div>
         )

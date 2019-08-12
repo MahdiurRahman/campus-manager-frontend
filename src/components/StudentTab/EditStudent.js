@@ -13,7 +13,7 @@ class EditStudent extends Component {
             name: props.student.name,
             gpa: props.student.gpa,
             img: props.student.img,
-            college: props.student.college,
+            campusId: props.student.campusId,
             nameIsCorrect: true,
             gpaIsCorrect: true,
             Redirect: false
@@ -30,7 +30,7 @@ class EditStudent extends Component {
             name: currentStudent.name,
             gpa: currentStudent.gpa,
             img: currentStudent.img,
-            college: currentStudent.college
+            campusId: currentStudent.campusId
         })
     }
     
