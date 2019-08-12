@@ -9,12 +9,12 @@ class StudentMain extends Component {
                 <div>
                     <div className="student-main">
                         <div className="student-nav">
-                            <div className="student-nav-element nav-title">All Students</div>
-                                <Link to="/studentAddForm" className="student-nav-element">Add Student</Link>
-                            </div>
-                            <StudentGrid students={this.props.students} />
+                            <div className="student-nav-title">All Students</div>
+                            <Link to="/studentAddForm" className="student-nav-element">Add Student</Link>
                         </div>
+                        <StudentGrid students={this.props.students} />
                     </div>
+                </div>
                 );
     }
 }
