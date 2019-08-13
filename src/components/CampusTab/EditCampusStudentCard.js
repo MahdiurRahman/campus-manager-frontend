@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import {removeStudentFromCampus} from '../../actions';
 import {connect} from "react-redux";
 import {Redirect} from "react-router";
+import axios from 'axios';
 
 class EditCampusStudentCard extends Component{
 	constructor(props) {
@@ -13,10 +14,20 @@ class EditCampusStudentCard extends Component{
         this.removeStudentFromCampus = this.removeStudentFromCampus.bind(this);
 	}
 
-	removeStudentFromCampus(student) {
-		console.log("RUNNING")
-		this.props.removeStudentFromCampus(student);
-		this.setState({removed: true});
+	async removeStudentFromCampus(student) {
+			let url ='http://localhost:5000/api/students/' + this.props.student.id;
+            await axios.put(url,{
+				name: this.props.student.name,
+				img: this.props.student.img,
+				gpa: this.props.student.gpa,
+				campusId: null
+            })
+            .then (res => {
+                this.props.removeStudentFromCampus(this.props.student);
+            })
+            .catch(err => console.log(err));
+		
+			this.setState({removed: true});
     }
 
 	render(){
