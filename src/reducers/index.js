@@ -27,6 +27,8 @@ const campusesReducer = (oldListofCampus = campuses, action) => {
                 }
             }
             return newListOfCampus;
+        case "EMPTY_CAMPUS":
+            return [];
 		default:
 			return oldListofCampus;
 	}

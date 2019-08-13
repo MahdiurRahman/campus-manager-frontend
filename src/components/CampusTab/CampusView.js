@@ -25,11 +25,11 @@ class CampusView extends Component {
         
         return (
             <div>
-                <p>{campus.name}</p>
-                <img src={campus.img} />
-                <p>{campus.address}</p>
-                <p>{campus.bio}</p>
-                <Link to={campus.id + "/edit"}><button>edit</button></Link>
+                <p>{this.props.campus_chosen.name}</p>
+                <img src={this.props.campus_chosen.img} />
+                <p>{this.props.campus_chosen.address}</p>
+                <p>{this.props.campus_chosen.bio}</p>
+                <Link to={this.props.campus_chosen.id + "/edit"}><button>edit</button></Link>
                 <button onClick={() => this.removeCampus_(campus)}>remove</button>
                 <p>Students on campus:</p>
                 <StudentGrid students={this.props.students}/>

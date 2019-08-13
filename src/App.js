@@ -15,6 +15,7 @@ import {addStudent} from './actions';
 import {addCampus} from './actions';
 import {editStudent} from './actions';
 import {editCampus} from './actions';
+import {emptyCampus} from './actions';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 class App extends React.Component{
@@ -103,6 +104,7 @@ class App extends React.Component{
                     return (
                       <CampusView
                         campus_id={campus.id}
+                        campus_chosen={campus}
                         students={component.students.filter(student => (student.campusId == campus.id))} />
                     )
                   }}

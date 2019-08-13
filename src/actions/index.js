@@ -5,6 +5,12 @@ export const addCampus = (Campus) => {
 	};
 };
 
+export const emptyCampus = () => {
+	return {
+		type: 'EMPTY_CAMPUS'
+	}
+}
+
 export const removeCampus = (Campus) => {
 	return {
 		type: 'REMOVE_CAMPUS',
