@@ -27,24 +27,25 @@ class StudentView extends Component {
                 currentStudent = this.props.students[i]
             }
         }
+        console.log(currentStudent);
         this.setState({
             student: currentStudent
         })
     }
 
     async removeStudent(student) {
+        console.log(this.state.student);
         await this.setState({
             redirect: true
         })
-    let url = 'http://localhost:5000/api/students/' + student.id;
-    console.log(url);
-    console.log(student.id);
-    await axios.delete(url)
-    .then(res => {
-        console.log(res)
-        this.props.removeStudentFromCampus(student);
-      })
-    .catch(err => console.log(err));
+        let url = 'http://localhost:5000/api/students/' + student.id;
+        console.log(student.id);
+        await axios.delete(url)
+        .then(res => {
+            console.log(res);
+            this.props.removeStudentFromCampus(student);
+        })
+        .catch(err => console.log(err));
         this.props.removeStudent(student)
     }
 
@@ -54,7 +55,7 @@ class StudentView extends Component {
         });
     }
 
-    changeCampus(){
+    async changeCampus(){
         console.log(this.state.changedCampus + " campus");
         if (this.state.changedCampus){
             let newCampus = undefined;
@@ -66,7 +67,20 @@ class StudentView extends Component {
             }
             let newStudent = this.state.student;
             newStudent.campusId = newCampus;
-            this.props.editStudent(newStudent);
+
+            let url ='http://localhost:5000/api/students/' + newStudent.id;
+            await axios.put(url,{
+                name: newStudent.name,
+                gpa : newStudent.gpa,
+                img : newStudent.img,
+                campus: newStudent.campusId
+            })
+            .then (res => {
+                //let singleStudent = res.body
+                console.log('updated')
+                this.props.editStudent(newStudent);
+            })
+            .catch(err => console.log(err));
         }
     }
 
