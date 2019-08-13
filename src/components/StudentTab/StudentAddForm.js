@@ -44,6 +44,7 @@ class StudentAddForm extends Component {
             })
             .catch(async err => console.log(err));
             await this.setState({redirect: true});
+            window.location.reload(true)
         }
     }
     

@@ -23,15 +23,9 @@ class StudentView extends Component {
     }
 
     componentDidMount(){
-        let currentStudent;
-        for (let i = 0; i < this.props.students.length; i++) {
-            if (this.props.students[i].id == this.props.student_id) {
-                currentStudent = this.props.students[i]
-            }
-        }
-        console.log(currentStudent);
+        console.log(this.props.student_chosen)
         this.setState({
-            student: currentStudent
+            student: this.props.student_chosen
         })
     }
 
@@ -104,15 +98,15 @@ class StudentView extends Component {
         return (
             <div className="StudentView">
               <div className="studentview-main">
-                <img className="studentview-img" src={this.state.student.img} />
+                <img className="studentview-img" src={this.props.student_chosen.img} />
                 <div className="studentview-info">
-                  <div className="studentview-title">{this.state.student.name}</div>
-                  <div className="studentview-gpa">GPA: {this.state.student.gpa}</div>
+                  <div className="studentview-title">{this.props.student_chosen.name}</div>
+                  <div className="studentview-gpa">GPA: {this.props.student_chosen.gpa}</div>
                 </div>
               </div>
               <div className="studentview-actionbar">
                 <div className="studentview-actions">
-                  <Link to={"/students/" + this.state.student.id + "/edit"}><button className="studentview-buttons">edit</button></Link>
+                  <Link to={"/students/" + this.props.student_id + "/edit"}><button className="studentview-buttons">edit</button></Link>
                   <button className="campusview-buttons btn-remove" onClick={() => this.removeStudent(this.state.student)}>remove</button>
                 </div>
               </div>
@@ -121,7 +115,7 @@ class StudentView extends Component {
                 	<div>
                 		<p className="studentview-title campusbar-header">This student is registered to:</p>
                         <div className="campusbar-card">
-                        	<CampusCard campus = {currentCampus} />
+                        	<StudentViewCampusCard campus = {currentCampus} />
                     	</div>
                     </div>
                     :
@@ -130,7 +124,7 @@ class StudentView extends Component {
                     <div className = "campusEditSection">
                         <select className="studentview-buttons" name="campus" onChange={this.handleCampusSelection}>
                             <option>Select Campus...</option>
-                            {this.props.campuses.map(campus => (
+                            {this.props.campuses.filter(campus => (campus.id != this.props.student_chosen.ca)).map(campus => (
                                 <option>{campus.name}</option>
                             ))}
                         </select>

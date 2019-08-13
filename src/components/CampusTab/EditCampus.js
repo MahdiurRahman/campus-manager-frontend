@@ -59,10 +59,11 @@ class EditCampus extends Component {
         .catch(err => console.log(err));
     }
 
-    handleSelection = (event) =>{
+    handleSelection = event =>{
+        console.log(event.target.value)
         this.setState({
             selection: event.target.value
-        });
+        })
     }
 
     onSubmitHandler = async event => {
@@ -105,38 +106,39 @@ class EditCampus extends Component {
         for (let i = 0; i < this.props.students.length; i++) {
             if (id_ == this.props.students[i].id) {
                 student = this.props.students[i];
-                console.log("FOUND STUDENT")
-                console.log(student)
+                // console.log("FOUND STUDENT")
+                // console.log(student)
             }
         }
 
         if (student) {
-            console.log(student);
-            console.log(this.props.campus.id);
+            // console.log(student);
+            // console.log(this.props.campus.id);
             student.campusId = this.props.campus.id;
-            console.log(student);
+            // console.log(student);
             this.props.editStudent(student);
         }
 
+        console.log(this.state.selection != '')
         if(this.state.selection != '')
         {
-            let stud;
-            for(let i = 0 ; i < this.props.students.size(); i++)
-            {
-                if(this.props.students[i].id == this.state.selection)
-                {
-                    stud = this.props.students[i];
-                    break;
-                }
-            }
-            console.log(stud);
-            console.log(this.state.selection);
+            // let stud;
+            // for(let i = 0 ; i < this.props.students.size(); i++)
+            // {
+            //     if(this.props.students[i].id == this.state.selection)
+            //     {
+            //         stud = this.props.students[i];
+            //         break;
+            //     }
+            // }
             let response = {
                 name: student.name,
                 gpa: student.gpa,
                 img: student.img,
-                campusId: this.state.id
+                campus: this.state.id
             }
+            
+            console.log(response)
             await axios.put('http://localhost:5000/api/students/' + this.state.selection, response)
             .catch(err => console.log(err))
         }
@@ -176,7 +178,7 @@ class EditCampus extends Component {
                     <input name="img" type="text" placeholder="image url" value={this.state.img} onChange={this.onChangeHandler} />
                     <textarea name="bio" placeholder="Insert Description" value={this.state.bio} onChange={this.onChangeHandler} ></textarea>
                     <button>Save Changes</button>
-                    <select name="student" onchange= {this.handleSelection}>
+                    <select name="student" onChange={this.handleSelection}>
                         <option>Select student...</option>
                         {this.props.students.filter(student => (student.campusId != this.props.campus.id)).map((student) => (
                             <option value={student.id}>{student.name}</option>

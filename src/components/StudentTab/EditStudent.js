@@ -40,6 +40,13 @@ class EditStudent extends Component {
                       [event.target.name]: event.target.value
                       })
     }
+
+    handleCampusSelection = event => {
+        console.log(event.target.value)
+        this.setState({
+            campusId: event.target.value
+        })
+    }
     
     onSubmitHandler = async event => {
         event.preventDefault()
@@ -71,7 +78,7 @@ class EditStudent extends Component {
                 name: this.state.name,
                 gpa : this.state.gpa,
                 img : this.state.img,
-                campusId: this.state.campusId
+                campus: this.state.campusId
             })
             .then (res => {
                 //let singleStudent = res.body
@@ -79,6 +86,7 @@ class EditStudent extends Component {
             })
             .catch(err => console.log(err));
             this.setState({redirect: true})
+            window.location.reload(true)
         }
     }
     
@@ -90,31 +98,40 @@ class EditStudent extends Component {
         }
         return (
                 <div>
-                <form onSubmit={this.onSubmitHandler}>
-                <input name="name" type="text" placeholder="Name" value={this.state.name} onChange={this.onChangeHandler} />
-                <input name="gpa" type="text" placeholder="GPA" value={this.state.gpa} onChange={this.onChangeHandler} />
-                <input name="img" type="text" placeholder="Image URL" value={this.state.img} onChange={this.onChangeHandler} />
-                <input type="submit" value="Save Changes" />
-                </form>
-                <div className="inputErrors">
-                    <div>
-                        {this.state.nameIsCorrect ? 
-                        "" :
-                        "Name must be at least one character long and must contain only letters and spaces"}
+                    <form onSubmit={this.onSubmitHandler}>
+                        <input name="name" type="text" placeholder="Name" value={this.state.name} onChange={this.onChangeHandler} />
+                        <input name="gpa" type="text" placeholder="GPA" value={this.state.gpa} onChange={this.onChangeHandler} />
+                        <input name="img" type="text" placeholder="Image URL" value={this.state.img} onChange={this.onChangeHandler} />
+                        <select className="studentview-buttons" name="campus" onChange={this.handleCampusSelection}>
+                            <option value=''>Select Campus...</option>
+                            {this.props.campuses.filter(campus => (campus.id != this.props.student.campusId)).map(campus => (
+                                <option value={campus.id}>{campus.name}</option>
+                            ))}
+                        </select>
+                        <input type="submit" value="Save Changes" />
+                    </form>
+                    <div className="inputErrors">
+                        <div>
+                            {this.state.nameIsCorrect ? 
+                            "" :
+                            "Name must be at least one character long and must contain only letters and spaces"}
                         </div>
                         <div>
-                        {this.state.gpaIsCorrect ?
-                        "":
-                        "GPA must be withing the range of 0 and 4"}
+                            {this.state.gpaIsCorrect ?
+                            "":
+                            "GPA must be withing the range of 0 and 4"}
                         </div>
-                </div>
+                    </div>
                 </div>
                 )
     }
 }
 
 const mapStateToProps = state => {
-    return {students: state.students}
+    return {
+        students: state.students,
+        campuses: state.campuses
+    }
 }
 
 export default connect(mapStateToProps, {

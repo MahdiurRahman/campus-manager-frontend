@@ -20,7 +20,7 @@ class EditCampusStudentCard extends Component{
 				name: this.props.student.name,
 				img: this.props.student.img,
 				gpa: this.props.student.gpa,
-				campusId: null
+				campus: null
             })
             .then (res => {
                 this.props.removeStudentFromCampus(this.props.student);

@@ -90,6 +90,7 @@ class App extends React.Component{
                     return (
                       <StudentView
                         student_id={student.id}
+                        student_chosen={student}
                       />
                     )
                   }}
