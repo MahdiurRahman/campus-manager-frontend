@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from 'react-redux';
 import {addCampus} from '../../actions';
 import {Redirect} from 'react-router';
+import axios from 'axios'
 
 class CampusAddForm extends React.Component {
 	constructor(props) {
@@ -9,12 +10,16 @@ class CampusAddForm extends React.Component {
 		this.state = {
 			redirect: false,
 			nameIsCorrect: true,
-			addressIsCorrect: true
+			addressIsCorrect: true,
+			name: '',
+			bio: '',
+			address: '',
+			image: ''
 		}
 		this.addCampus = this.addCampus.bind(this);
 	}
 
-	addCampus (e) {
+	async addCampus (e) {
 		e.preventDefault();
 
 		let campus = {
@@ -49,9 +54,36 @@ class CampusAddForm extends React.Component {
         })
 
         if (correctName && correctAddress){
-			this.props.addCampus(campus);
+			console.log(this.state.id);
+            let url ='http://localhost:5000/api/campuses';
+			console.log(url);
+			console.log(this.props.campuses);
+            await axios.post(url,{
+                name: this.state.name,
+				img: this.state.image,
+				address: this.state.address,
+				bio: this.state.bio
+            })
+            .then (res => {
+				console.log(res)
+				this.props.addCampus({
+					name: this.state.name,
+					img: this.state.image,
+					address: this.state.address,
+					bio: this.state.bio
+				})
+            })
+            .catch(err => console.log(err));
+			
 			this.setState({redirect: true});
 		}
+	}
+
+	onChangeHandler = event => {
+		this.setState({
+			[event.target.name]: event.target.value 
+		})
+		console.log(this.state)
 	}
 
 	render() {
@@ -61,15 +93,19 @@ class CampusAddForm extends React.Component {
 				<form onSubmit={this.addCampus}>
 				  <label>
 					Name:
-					<input type="text" name="name" />
+					<input type="text" name="name" onChange={this.onChangeHandler} />
 				  </label>
 				  <label>
 					Bio:
-					<input type="text" name="bio" />
+					<input type="text" name="bio" onChange={this.onChangeHandler} />
 				  </label>
 				  <label>
 					Address:
-					<input type="text" name="address" />
+					<input type="text" name="address" onChange={this.onChangeHandler} />
+				  </label>
+				  <label>
+					image:
+					<input type="text" name="image" onChange={this.onChangeHandler} />
 				  </label>
 				  <input type="submit" value="Submit"/>
 				</form>

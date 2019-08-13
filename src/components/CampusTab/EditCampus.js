@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {editCampus} from '../../actions'
 import {selectCampus} from '../../actions'
 import {editStudent} from '../../actions'
+import {emptyCampus} from '../../actions'
+import {addCampus} from '../../actions'
 import EditCampusStudentGrid from './EditCampusStudentGrid'
 import {Redirect} from 'react-router'
 import axios from 'axios'
@@ -23,6 +25,7 @@ class EditCampus extends Component {
         }
         this.props.selectCampus(this.props.campus);
         this.onChangeHandler = this.onChangeHandler.bind(this)
+        this.getCampuses = this.getCampuses.bind(this);
     }
 
     onChangeHandler = event => {
@@ -31,8 +34,35 @@ class EditCampus extends Component {
         })
     }
 
+    // async getStudents(){
+    //     await axios.get('http://localhost:5000/api/students')
+    //     .then (response => {
+    //            let result = response.data;
+    //            for (let i = 0; i < result.length; i++){
+    //             this.props.addStudent(result[i]);
+    //            }
+    //            })
+    //     .catch(err => console.log(err));
+    // }
+    
+    async getCampuses(){
+        console.log("GET CAMPUSES!")
+        await this.props.emptyCampus();
+        await axios.get('http://localhost:5000/api/campuses')
+        .then(response => {
+            let result = response.data;
+                for (let i = 0; i < result.length; i++){
+                    this.props.addCampus(result[i]);
+                }
+            }
+        )
+        .catch(err => console.log(err));
+    }
+
     onSubmitHandler = async event => {
         event.preventDefault()
+
+        let that = this
 
         let correctName = true;
         if (this.state.name.length < 1){
@@ -89,13 +119,9 @@ class EditCampus extends Component {
                 address : this.state.address,
                 img: this.state.img
             })
-            .then (res => {
-                //let singleStudent = res.body
-                this.props.editCampus(that.state);
-            })
+            .then(() => that.setState({redirect: true}))
+            .then(async () => await this.getCampuses())
             .catch(err => console.log(err));
-
-        	this.setState({redirect: true});
     	}
     }
 
@@ -147,6 +173,8 @@ const mapStateToProps = State => {
 
 export default connect(mapStateToProps, {
     editCampus,
+    addCampus,
+    emptyCampus,
     selectCampus,
     editStudent
 })(EditCampus)

@@ -3,6 +3,7 @@ import "./CampusCard.css";
 import {connect} from "react-redux";
 import {removeCampus, removeCampusFromStudent} from '../../actions/index.js';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 class CampusCard extends React.Component {
 	constructor(props) {
@@ -10,9 +11,17 @@ class CampusCard extends React.Component {
     this.removeCampus = this.removeCampus.bind(this);
 	}
 
-	removeCampus() {
-    this.props.removeCampusFromStudent(this.props.campus);
-    this.props.removeCampus(this.props.campus);
+	async removeCampus() {
+    let url = 'http://localhost:5000/api/campuses/' + this.props.campus.id;
+    console.log(url);
+    console.log(this.props.campus);
+    await axios.delete(url)
+    .then(res => {
+        console.log(res)
+        this.props.removeCampusFromStudent(this.props.campus);
+        this.props.removeCampus(this.props.campus);
+      })
+    .catch(err => console.log(err));
   }
 
     render() {
