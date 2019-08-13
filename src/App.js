@@ -75,7 +75,7 @@ class App extends React.Component{
     
     let component = this.props
     return(
-      <div id="app">
+      <div className="App" id="app">
         <Router>
           <Route path = "/" render={HeaderComponent} />
           <Switch>

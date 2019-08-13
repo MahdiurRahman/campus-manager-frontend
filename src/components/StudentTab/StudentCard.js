@@ -21,18 +21,12 @@ class StudentCard extends Component{
 	render(){
 		let thisStudentIdLink = "/students/" + this.props.student.id;
 		return(
-			<div className="studentInfo">
-				<Link to={thisStudentIdLink}>
-					<div className="studentImage">
-						<img src={this.props.student.img} alt="Student Pic" />
-					</div>
-					<div className="studentName">
-						{this.props.student.name}
-					</div>
-				</Link>
-				<div className="campusName">
+			<div className="student-card">
+				<img className = "student-card-img" src={this.props.student.img} alt="Student Pic" />
+				<Link className="student-card-title" to={thisStudentIdLink}>{this.props.student.name}</Link>
+				<div className="student-card-element">
 				{this.props.student.campusId !== undefined ?
-					<Link to={"/campuses/" + this.props.student.campusId}>
+					<Link className = "student-card-element" to={"/campuses/" + this.props.student.campusId}>
 						{this.findCollegeName(this.props.student.campusId)}
 					</Link>
 					:

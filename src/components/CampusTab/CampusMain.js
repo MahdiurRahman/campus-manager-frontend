@@ -9,7 +9,7 @@ class CampusMain extends React.Component {
             <div>
               <div className="campus-main">
                 <div className="campus-nav">
-                  <div className="campus-nav-element nav-title">All Campuses</div>
+                  <div className="campus-nav-title">All Campuses</div>
                   <Link to="/campusAddForm" className="campus-nav-element">Add Campus</Link>
                 </div>
                 <CampusGrid campuses={this.props.campuses}/>

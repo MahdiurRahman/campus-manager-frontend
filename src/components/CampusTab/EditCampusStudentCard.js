@@ -15,16 +15,15 @@ class EditCampusStudentCard extends Component{
 	}
 
 	async removeStudentFromCampus(student) {
-			let url ='http://localhost:5000/api/student/' + this.state.id;
-            const that = this;
+			let url ='http://localhost:5000/api/students/' + this.props.student.id;
             await axios.put(url,{
-				name: this.state.name,
-                gpa : this.state.gpa,
-                img : this.state.img,
-                campusId: null
+				name: this.props.student.name,
+				img: this.props.student.img,
+				gpa: this.props.student.gpa,
+				campusId: null
             })
             .then (res => {
-                this.props.removeStudentFromCampus(that.state);
+                this.props.removeStudentFromCampus(this.props.student);
             })
             .catch(err => console.log(err));
 		
