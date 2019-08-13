@@ -3,7 +3,8 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {removeStudent} from '../../actions'
 import {editStudent} from '../../actions'
-import StudentViewCampusCard from './StudentViewCampusCard'
+import CampusCard from '../CampusTab/CampusCard'
+import './StudentView.css'
 
 class StudentView extends Component {
     constructor(props) {
@@ -64,26 +65,33 @@ class StudentView extends Component {
     }
 
         return (
-            <div>
-            <p>{this.state.student.name}</p>
-            <img src={this.state.student.img} />
-            <p>{this.state.student.gpa}</p>
+            <div className="StudentView">
+              <div className="studentview-main">
+                <img className="studentview-img" src={this.state.student.img} />
+                <div className="studentview-info">
+                  <div className="studentview-title">{this.state.student.name}</div>
+                  <div className="studentview-gpa">GPA: {this.state.student.gpa}</div>
+                </div>
+              </div>
+              <div className="studentview-actionbar">
+                <div className="studentview-actions">
+                  <Link to={"/students/" + this.state.student.id + "/edit"}><button className="studentview-buttons">edit</button></Link>
+                  <button className="campusview-buttons btn-remove" onClick={() => this.removeStudent(this.state.student)}>remove</button>
+                </div>
+              </div>
             <div className="campusCard">
                 {this.state.student.campusId !== undefined && currentCampus !== undefined ?
                 	<div>
-                		<p>This student is registered to:</p>
+                		<p className="studentview-title campusCard-header">This student is registered to:</p>
                     	<Link to={"/campuses/" + this.state.student.campusId}>
-                        	<StudentViewCampusCard campus = {currentCampus} />
+                        	<CampusCard campus = {currentCampus} />
                     	</Link>
                     </div>
                     :
                     "Not Enrolled"
                 }
-                </div>
-            <Link to={"/students/" + this.state.student.id + "/edit"}><button>Edit</button></Link>
-            <button onClick={() => this.removeStudent(this.state.student)}>delete</button>
-            <div className = "campusEditSection">
-            <select name="campus" onChange={this.handleCampusSelection}>
+                    <div className = "campusEditSection">
+                        <select name="campus" onChange={this.handleCampusSelection}>
                             <option>Select Campus...</option>
                             {this.props.campuses.map(campus => (
                                 <option>{campus.name}</option>
@@ -91,6 +99,7 @@ class StudentView extends Component {
                         </select>
                         <button onClick={this.changeCampus}>Save Changes</button>
                     </div>
+                </div>
             </div>
             )
     }
