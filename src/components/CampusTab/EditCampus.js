@@ -21,7 +21,8 @@ class EditCampus extends Component {
             img: props.campus.img,
             nameIsCorrect: true,
 			addressIsCorrect: true,
-            redirect: false
+            redirect: false,
+            selection: ''
         }
         this.props.selectCampus(this.props.campus);
         this.onChangeHandler = this.onChangeHandler.bind(this)
@@ -46,7 +47,6 @@ class EditCampus extends Component {
     // }
     
     async getCampuses(){
-        console.log("GET CAMPUSES!")
         await this.props.emptyCampus();
         await axios.get('http://localhost:5000/api/campuses')
         .then(response => {
@@ -57,6 +57,12 @@ class EditCampus extends Component {
             }
         )
         .catch(err => console.log(err));
+    }
+
+    handleSelection = (event) =>{
+        this.setState({
+            selection: event.target.value
+        });
     }
 
     onSubmitHandler = async event => {
@@ -93,12 +99,14 @@ class EditCampus extends Component {
         	this.props.editCampus(this.state)
     	}
 
-        let name = event.target.student.value;
+        let id_ = event.target.student.value;
         let student = undefined;
 
         for (let i = 0; i < this.props.students.length; i++) {
-            if (name == this.props.students[i].name) {
+            if (id_ == this.props.students[i].id) {
                 student = this.props.students[i];
+                console.log("FOUND STUDENT")
+                console.log(student)
             }
         }
 
@@ -109,20 +117,49 @@ class EditCampus extends Component {
             console.log(student);
             this.props.editStudent(student);
         }
+
+        if(this.state.selection != '')
+        {
+            let stud;
+            for(let i = 0 ; i < this.props.students.size(); i++)
+            {
+                if(this.props.students[i].id == this.state.selection)
+                {
+                    stud = this.props.students[i];
+                    break;
+                }
+            }
+            console.log(stud);
+            console.log(this.state.selection);
+            let response = {
+                name: student.name,
+                gpa: student.gpa,
+                img: student.img,
+                campusId: this.state.id
+            }
+            await axios.put('http://localhost:5000/api/students/' + this.state.selection, response)
+            .catch(err => console.log(err))
+        }
+
         if (correctName && correctAddress){
             //this.props.editStudent(this.state)
-            let url ='http://localhost:5000/api/campuses/' + this.state.id;
-            const that = this;
-            await axios.put(url,{
+            let response = {
                 name: this.state.name,
                 bio : this.state.bio,
                 address : this.state.address,
                 img: this.state.img
-            })
+            };
+            
+            let url ='http://localhost:5000/api/campuses/' + this.state.id;
+            const that = this;
+            await axios.put(url,response)
             .then(() => that.setState({redirect: true}))
             .then(async () => await this.getCampuses())
             .catch(err => console.log(err));
-    	}
+        }
+
+        
+        
     }
 
     render() {
@@ -139,10 +176,10 @@ class EditCampus extends Component {
                     <input name="img" type="text" placeholder="image url" value={this.state.img} onChange={this.onChangeHandler} />
                     <textarea name="bio" placeholder="Insert Description" value={this.state.bio} onChange={this.onChangeHandler} ></textarea>
                     <button>Save Changes</button>
-                    <select name="student">
+                    <select name="student" onchange= {this.handleSelection}>
                         <option>Select student...</option>
                         {this.props.students.filter(student => (student.campusId != this.props.campus.id)).map((student) => (
-                            <option>{student.name}</option>
+                            <option value={student.id}>{student.name}</option>
                         ))}
                     </select>
                 </form>

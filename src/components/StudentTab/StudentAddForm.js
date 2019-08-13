@@ -2,6 +2,7 @@ import React, {Component} from "react"
 import {connect} from 'react-redux';
 import {addStudent} from '../../actions';
 import {Redirect} from 'react-router';
+import axios from 'axios'
 
 class StudentAddForm extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class StudentAddForm extends Component {
         this.addStudent = this.addStudent.bind(this);
     }
     
-    addStudent (e) {
+    async addStudent (e) {
         e.preventDefault();
         let correctName = true;
         if (e.target.elements.name.value.length < 1){
@@ -32,8 +33,17 @@ class StudentAddForm extends Component {
                 name: e.target.elements.name.value,
                 img: 'https://d29fhpw069ctt2.cloudfront.net/icon/image/49320/preview.svg'
             }
-            this.props.addStudent(student);
-            this.setState({redirect: true});
+            let url ='http://localhost:5000/api/students';
+            await axios.post(url,{
+                name: student.name,
+                img: student.img
+            })
+            .then (async res => {
+				console.log(res)
+				await this.props.addStudent(student);
+            })
+            .catch(async err => console.log(err));
+            await this.setState({redirect: true});
         }
     }
     
