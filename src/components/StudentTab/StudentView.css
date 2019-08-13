@@ -59,18 +59,29 @@
     font-size: 10pt;
 }
 
-.campusCard {
+.campusbar {
     width: 640px;
     background: rgba(29, 37, 49, 0.5);
     margin: 20px 20px 0 20px;
     padding-top: 5px;
 }
 
-.campusCard-header {
+.campusbar-header {
     margin: 10px 20px 0 20px;
     text-decoration: none;
 }
 
-.student-campus {
-    margin: 0 20px;
+.campusbar-card {
+    margin: 10px 20px;
+}
+
+.campusEditSection {
+    margin: 10px;
+}
+.campusview-selector {
+    background: rgba(236, 244, 255, 0.5);
+    color: #84a2cf;
+    border: 1px solid #84a2cf;
+    text-shadow: 1px 1px rgba(132, 162, 207, 0.2);
+    font-size: 10pt;
 }

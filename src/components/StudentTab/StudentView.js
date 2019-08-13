@@ -79,25 +79,25 @@ class StudentView extends Component {
                   <button className="campusview-buttons btn-remove" onClick={() => this.removeStudent(this.state.student)}>remove</button>
                 </div>
               </div>
-            <div className="campusCard">
+            <div className="campusbar">
                 {this.state.student.campusId !== undefined && currentCampus !== undefined ?
                 	<div>
-                		<p className="studentview-title campusCard-header">This student is registered to:</p>
-                    	<Link to={"/campuses/" + this.state.student.campusId}>
+                		<p className="studentview-title campusbar-header">This student is registered to:</p>
+                        <div className="campusbar-card">
                         	<CampusCard campus = {currentCampus} />
-                    	</Link>
+                    	</div>
                     </div>
                     :
                     "Not Enrolled"
                 }
                     <div className = "campusEditSection">
-                        <select name="campus" onChange={this.handleCampusSelection}>
+                        <select className="studentview-buttons" name="campus" onChange={this.handleCampusSelection}>
                             <option>Select Campus...</option>
                             {this.props.campuses.map(campus => (
                                 <option>{campus.name}</option>
                             ))}
                         </select>
-                        <button onClick={this.changeCampus}>Save Changes</button>
+                        <button className="studentview-buttons" onClick={this.changeCampus}>Save Changes</button>
                     </div>
                 </div>
             </div>
