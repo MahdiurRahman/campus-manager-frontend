@@ -1,13 +1,13 @@
 .campus-main {
-    width: 750px;
+    width: 94.5vw;
     background: rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    padding: 10px;
+    margin: 1vw;
+    padding: 1vw;
 }
 
 .campus-nav {
     background: rgba(29, 37, 49, 0.5);
-    height: 42px;
+    height: 6vh;
     width: 100%;
 }
 
@@ -34,5 +34,8 @@
 }
 
 .campus-grid {
-
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
 }

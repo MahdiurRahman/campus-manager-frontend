@@ -3,6 +3,7 @@ import StudentGrid from '../StudentTab/StudentGrid'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {removeCampus, removeCampusFromStudent} from '../../actions'
+import './CampusView.css';
 
 class CampusView extends Component {
     constructor(props) {
@@ -24,7 +25,7 @@ class CampusView extends Component {
         }
         
         return (
-            <div>
+            <div className="campus-view">
                 <p>{this.props.campus_chosen.name}</p>
                 <img src={this.props.campus_chosen.img} />
                 <p>{this.props.campus_chosen.address}</p>
