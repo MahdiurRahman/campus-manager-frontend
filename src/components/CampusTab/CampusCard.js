@@ -30,14 +30,16 @@ class CampusCard extends React.Component {
               <img className="campus-card-img" src={this.props.campus.img}/>
               <div className="campus-card-info">
                 <Link className="campus-card-title" to={"/campuses/" + this.props.campus.id}>{this.props.campus.name}</Link>
-                <div className="campus-card-element">{this.props.campus.bio}</div>
+                <div className="campus-card-element">
+                  {this.props.students.filter(student => (student.college == this.props.campus.id)).length} students
+                </div>
                 <div className="campus-card-element">
                   <Link to={"/campuses/" + this.props.campus.id + "/edit"}>
                     <button className="campus-card-button">
                       Edit
                     </button>
                   </Link>
-                  <button className="campus-card-button" onClick={this.removeCampus}>Remove</button>
+                  <button className="campus-card-button btn-remove" onClick={this.removeCampus}>Remove</button>
                 </div>
               </div>
             </div>
