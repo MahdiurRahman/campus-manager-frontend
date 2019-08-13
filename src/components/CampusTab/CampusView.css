@@ -1,0 +1,24 @@
+.campus-view{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.campus-view p:first-child{
+    font-size: 40pt;
+    font-weight: 900;
+    text-decoration: underline;
+}
+
+.campus-view p{
+    text-align: center;
+    font-size: 28pt;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.campus-view img{
+    max-width: 20vw;
+    max-height: 20vh;
+    margin-left: 39vw;
+}
