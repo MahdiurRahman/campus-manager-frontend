@@ -3,14 +3,18 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {removeStudent} from '../../actions'
 import {editStudent} from '../../actions'
+import {Redirect} from 'react-router'
 import StudentViewCampusCard from './StudentViewCampusCard'
+import {removeStudentFromCampus} from '../../actions'
+import axios from 'axios'
 
 class StudentView extends Component {
     constructor(props) {
         super(props);
         this.state = {
             changedCampus: undefined,
-            student: ""
+            student: "",
+            redirect: false
         }
         this.handleCampusSelection = this.handleCampusSelection.bind(this);
         this.changeCampus = this.changeCampus.bind(this);
@@ -28,7 +32,19 @@ class StudentView extends Component {
         })
     }
 
-    removeStudent(student) {
+    async removeStudent(student) {
+        await this.setState({
+            redirect: true
+        })
+    let url = 'http://localhost:5000/api/students/' + student.id;
+    console.log(url);
+    console.log(student.id);
+    await axios.delete(url)
+    .then(res => {
+        console.log(res)
+        this.props.removeStudentFromCampus(student);
+      })
+    .catch(err => console.log(err));
         this.props.removeStudent(student)
     }
 
@@ -62,6 +78,12 @@ class StudentView extends Component {
         break;
       }
     }
+
+    if (this.state.redirect) {
+            return (
+                <Redirect to={"/students/"}/>
+            );
+        }
 
         return (
             <div>
