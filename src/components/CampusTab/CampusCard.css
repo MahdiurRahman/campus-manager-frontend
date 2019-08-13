@@ -36,12 +36,21 @@
 }
 
 .campus-card-button {
-    background: rgba(236, 244, 255, 0.85);
-    color: #71829c;
-    text-decoration: none;
+    background: rgba(236, 244, 255, 0);
+    color: #84a2cf;
+    border: none;
+    text-decoration: underline;
     text-shadow: 1px 1px rgba(132, 162, 207, 0.2);
     font-size: 10pt;
     margin-top: 15px;
     padding: 0 5px;
 }
 
+.btn-remove{
+    color: #cf8484;
+    text-shadow: 1px 1px rgba(182, 89, 89, 0.2);
+}
+
+.campusview-students {
+    
+}

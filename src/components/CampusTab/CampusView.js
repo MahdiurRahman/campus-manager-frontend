@@ -3,6 +3,7 @@ import StudentGrid from '../StudentTab/StudentGrid'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {removeCampus, removeCampusFromStudent} from '../../actions'
+import './CampusView.css'
 
 class CampusView extends Component {
     constructor(props) {
@@ -24,15 +25,25 @@ class CampusView extends Component {
         }
         
         return (
-            <div>
-                <p>{this.props.campus_chosen.name}</p>
-                <img src={this.props.campus_chosen.img} />
-                <p>{this.props.campus_chosen.address}</p>
-                <p>{this.props.campus_chosen.bio}</p>
-                <Link to={this.props.campus_chosen.id + "/edit"}><button>edit</button></Link>
-                <button onClick={() => this.removeCampus_(campus)}>remove</button>
-                <p>Students on campus:</p>
-                <StudentGrid students={this.props.students}/>
+            <div className="CampusView">
+              <div className="campusview-main">
+                <img className="campusview-img" src={this.props.campus_chosen.img} />
+                <div className="campusview-info">
+                  <div className="campusview-title">{this.props.campus_chosen.name}</div>
+                  <div className="campusview-bio">{this.props.campus_chosen.bio}</div>
+                </div>
+              </div>
+              <div className="campusview-actionbar">
+                <div className="campusview-address">{this.props.campus_chosen.address}</div>
+                <div className="campusview-actions">
+                  <Link to={this.props.campus_chosen.id + "/edit"}><button className="campusview-buttons">edit</button></Link>
+                  <button className="campusview-buttons btn-remove" onClick={() => this.removeCampus_(campus)}>remove</button>
+                </div>
+              </div>
+              <div className="campusview-students">
+                <div className="campusview-title studentgrid-title">Students in this campus</div>
+            .   <StudentGrid className="studentgrid" students={this.props.students}/>
+              </div>
             </div>
         )
     }
