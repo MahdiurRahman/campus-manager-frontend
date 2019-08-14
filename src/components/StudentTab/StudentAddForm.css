@@ -1,15 +1,15 @@
-.CampusAddForm{
+.StudentAddForm{
     padding-top: 10px;
     margin: 10px;
     width: 350px;
     background: rgba(29, 37, 49, 0.5);
 }
 
-.campus-addform-element {
+.student-addform-element {
     margin: 10px;
 }
 
-.campus-addform-label {
+.student-addform-label {
     margin: 5px;
     color: #84a2cf;
     text-shadow: 1px 1px rgba(132, 162, 207, 0.2);
@@ -17,7 +17,7 @@
     font-weight: bold;
 }
 
-.campus-addform-input {
+.student-addform-input {
     background: none;
     color: #84a2cf;
     width: 100px;
@@ -30,7 +30,7 @@
     font-size: 10pt;
 }
 
-.campus-addform-button {
+.student-addform-button {
     padding: 10px;
     background: rgba(236, 244, 255, 0);
     color: #84a2cf;
@@ -38,10 +38,4 @@
     text-decoration: underline;
     text-shadow: 1px 1px rgba(132, 162, 207, 0.2);
     font-size: 12pt;
-}
-
-.color-red {
-    color: #cf8484;
-    padding: 10px;
-    text-shadow: 1px 1px rgba(207, 132, 132, 0.2);
 }

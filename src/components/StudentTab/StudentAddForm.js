@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {addStudent} from '../../actions';
 import {Redirect} from 'react-router';
 import axios from 'axios'
+import "./StudentAddForm.css"
 
 class StudentAddForm extends Component {
     constructor(props) {
@@ -51,25 +52,29 @@ class StudentAddForm extends Component {
     render() {
         if (!this.state.redirect) {
             return (
-                <div className="result">
-                    <form onSubmit={this.addStudent}>
-                        <label>
-                            Name:
-                            <input type="text" name="name" />
-                        </label>
-                        <input type="submit" value="Submit"/>
-                    </form>
-                    <div className="inputErrors">
-                    {this.state.nameIsCorrect ?
+              <div className="StudentAddForm">
+                <form className="student-addform" onSubmit={this.addStudent}>
+                  <div className="student-addform-element">
+                    <label className="student-addform-label">
+                      Name:
+                      <input className="campus-addform-input" type="text" name="name" />
+                    </label>
+                  </div>
+				  <div className="student-addform-element">
+				    <button className="student-addform-button">Submit</button>
+				  </div>
+                </form>
+                <div className="campus-addform-label color-red">
+                  {this.state.nameIsCorrect ?
                     "" :
                     "Name must be at least one character long and must contain only letters and spaces"}
-                    </div>
-                    </div>
-                    );
+                </div>
+              </div>
+            );
         } else {
             return (
-                    <Redirect to="/students"/>
-                    );
+              <Redirect to="/students"/>
+            );
         }
     }
 }

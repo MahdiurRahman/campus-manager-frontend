@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {addCampus} from '../../actions';
 import {Redirect} from 'react-router';
 import axios from 'axios'
+import './CampusAddForm.css'
 
 class CampusAddForm extends React.Component {
 	constructor(props) {
@@ -90,37 +91,47 @@ class CampusAddForm extends React.Component {
 	render() {
 		if (!this.state.redirect) {
 			return (
-				<div>
-				<form onSubmit={this.addCampus}>
-				  <label>
-					Name:
-					<input type="text" name="name" onChange={this.onChangeHandler} />
-				  </label>
-				  <label>
-					Bio:
-					<input type="text" name="bio" onChange={this.onChangeHandler} />
-				  </label>
-				  <label>
-					Address:
-					<input type="text" name="address" onChange={this.onChangeHandler} />
-				  </label>
-				  <label>
-					image:
-					<input type="text" name="image" onChange={this.onChangeHandler} />
-				  </label>
-				  <input type="submit" value="Submit"/>
-				</form>
-				<div className="inputErrors">
-					<div>
-						{this.state.nameIsCorrect ? 
-							"" :
-							"Name must be at least one character long and must contain only letters and spaces"}
+			  <div className="CampusAddForm">
+				<form className="campus-addform" onSubmit={this.addCampus}>
+				  <div className="campus-addform-element">
+				    <label className="campus-addform-label">
+  					  Name:
+  					  <input className="campus-addform-input" type="text" name="name" onChange={this.onChangeHandler} />
+  				    </label>
+				  </div>
+				  <div className="campus-addform-element">
+				    <label className="campus-addform-label">
+				  	  Bio:
+					  <input className="campus-addform-input" type="text" name="bio" onChange={this.onChangeHandler} />
+				    </label>
 					</div>
-						{this.state.addressIsCorrect ? 
-							"" :
-							"Address must not be empty, and can consist only of letters, numbers, and spaces"}
+				  <div className="campus-addform-element">
+				    <label className="campus-addform-label">
+					  Address:
+					  <input className="campus-addform-input" type="text" name="address" onChange={this.onChangeHandler} />
+				    </label>
+					</div>
+				  <div className="campus-addform-element">
+				    <label className="campus-addform-label">
+					  image:
+					  <input className="campus-addform-input" type="text" name="image" onChange={this.onChangeHandler} />
+				    </label>
+				  </div>
+				  <div className="campus-addform-element">
+				    <button className="campus-addform-button">Submit</button>
+				  </div>
+				</form>
+				<div className="campus-addform-label color-red">
+				  <div>
+					{this.state.nameIsCorrect ? 
+					  "" :
+					  "Name must be at least one character long and must contain only letters and spaces"}
+				  </div>
+					  {this.state.addressIsCorrect ? 
+					  "" :
+					  "Address must not be empty, and can consist only of letters, numbers, and spaces"}
 				</div>
-				</div>
+			  </div>
 			);
 		} else {
 			return (
