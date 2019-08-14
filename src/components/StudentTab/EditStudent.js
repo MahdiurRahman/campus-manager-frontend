@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {editStudent} from '../../actions';
 import {Redirect} from 'react-router';
 import axios from 'axios';
+import "./EditStudent.css"
 
 class EditStudent extends Component {
     constructor(props) {
@@ -97,33 +98,50 @@ class EditStudent extends Component {
             );
         }
         return (
-                <div>
-                    <form onSubmit={this.onSubmitHandler}>
-                        <input name="name" type="text" placeholder="Name" value={this.state.name} onChange={this.onChangeHandler} />
-                        <input name="gpa" type="text" placeholder="GPA" value={this.state.gpa} onChange={this.onChangeHandler} />
-                        <input name="img" type="text" placeholder="Image URL" value={this.state.img} onChange={this.onChangeHandler} />
-                        <select className="studentview-buttons" name="campus" onChange={this.handleCampusSelection}>
-                            <option value=''>Select Campus...</option>
-                            {this.props.campuses.filter(campus => (campus.id != this.props.student.campusId)).map(campus => (
-                                <option value={campus.id}>{campus.name}</option>
-                            ))}
-                        </select>
-                        <input type="submit" value="Save Changes" />
-                    </form>
-                    <div className="inputErrors">
-                        <div>
-                            {this.state.nameIsCorrect ? 
-                            "" :
-                            "Name must be at least one character long and must contain only letters and spaces"}
-                        </div>
-                        <div>
-                            {this.state.gpaIsCorrect ?
-                            "":
-                            "GPA must be withing the range of 0 and 4"}
-                        </div>
-                    </div>
+              <div className="StudentAddForm">
+                <form className="student-addform" onSubmit={this.onSubmitHandler}>
+                  <div className="student-addform-element">
+                    <label className="student-addform-label">
+                      Name:
+                      <input className="campus-addform-input" name="name" type="text" value={this.state.name} onChange={this.onChangeHandler} />
+                    </label>
+                  </div>
+                  <div className="student-addform-element">
+                    <label className="student-addform-label">
+                      GPA:
+                      <input className="campus-addform-input" name="gpa" type="text" value={this.state.gpa} onChange={this.onChangeHandler} />
+                    </label>
+                  </div>
+                  <div className="student-addform-element">
+                    <label className="student-addform-label">
+                      Image URL:
+                      <input className="campus-addform-input" name="img" type="text" value={this.state.img} onChange={this.onChangeHandler} />
+                    </label>
+                  </div>
+				  <div className="student-addform-element">
+                    <select className="studentview-buttons" name="campus" onChange={this.handleCampusSelection}>
+                      <option className="campus-addform-button" value=''>Select Campus...</option>
+                      {this.props.campuses.filter(campus => (campus.id != this.props.student.campusId)).map(campus => (
+                          <option className="campus-addform-button student-btns" value={campus.id}>{campus.name}</option>
+                      ))}
+                    </select>
+				    <button className="student-addform-button student-btns">Save Changes</button>
+				  </div>
+                </form>
+                <div className="campus-addform-label color-red">
+                  <div>
+                    {this.state.nameIsCorrect ? 
+                        "" :
+                        "Name must be at least one character long and must contain only letters and spaces"}
+                  </div>
+                  <div>
+                    {this.state.gpaIsCorrect ?
+                        "":
+                        "GPA must be withing the range of 0 and 4"}
+                  </div>
                 </div>
-                )
+              </div>
+        )
     }
 }
 
