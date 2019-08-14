@@ -61,6 +61,7 @@
 }
 
 .campusview-buttons {
+    padding: 10px;
     background: rgba(236, 244, 255, 0);
     color: #84a2cf;
     border: none;

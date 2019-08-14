@@ -115,7 +115,7 @@ class StudentView extends Component {
                 	<div>
                 		<p className="studentview-title campusbar-header">This student is registered to:</p>
                         <div className="campusbar-card">
-                        	<StudentViewCampusCard campus = {currentCampus} />
+                        	<CampusCard campus = {currentCampus} />
                     	</div>
                     </div>
                     :
