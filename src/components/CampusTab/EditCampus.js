@@ -8,6 +8,7 @@ import {addCampus} from '../../actions'
 import EditCampusStudentGrid from './EditCampusStudentGrid'
 import {Redirect} from 'react-router'
 import axios from 'axios'
+import "./EditCampus.css"
 
 class EditCampus extends Component {
     constructor(props) {
@@ -171,21 +172,43 @@ class EditCampus extends Component {
             )
         }
         return (
-            <div>
-                <form onSubmit={this.onSubmitHandler}>
-                    <input name="name" type="text" placeholder="name" value={this.state.name} onChange={this.onChangeHandler} />
-                    <input name="address" type="text" placeholder="address" value={this.state.address} onChange={this.onChangeHandler} />
-                    <input name="img" type="text" placeholder="image url" value={this.state.img} onChange={this.onChangeHandler} />
-                    <textarea name="bio" placeholder="Insert Description" value={this.state.bio} onChange={this.onChangeHandler} ></textarea>
-                    <button>Save Changes</button>
-                    <select name="student" onChange={this.handleSelection}>
-                        <option>Select student...</option>
-                        {this.props.students.filter(student => (student.campusId != this.props.campus.id)).map((student) => (
-                            <option value={student.id}>{student.name}</option>
-                        ))}
+             <div className="EditCampus">
+            	<form className="campus-addform" onSubmit={this.onSubmitHandler}>
+				  <div className="campus-addform-element">
+				    <label className="campus-addform-label">
+  					  Name:
+  					  <input className="campus-addform-input" name="name" type="text" placeholder="name" value={this.state.name} onChange={this.onChangeHandler}/>
+  				    </label>
+				  </div>
+				  <div className="campus-addform-element">
+				    <label className="campus-addform-label">
+				  	  Bio:
+					  <input className="campus-addform-input" name="bio" placeholder="Insert Description" value={this.state.bio} onChange={this.onChangeHandler} />
+				    </label>
+					</div>
+				  <div className="campus-addform-element">
+				    <label className="campus-addform-label">
+					  Address:
+					  <input className="campus-addform-input" name="address" type="text" placeholder="address" value={this.state.address} onChange={this.onChangeHandler}/>
+				    </label>
+					</div>
+				  <div className="campus-addform-element">
+				    <label className="campus-addform-label">
+					  image:
+					  <input className="campus-addform-input" name="img" type="text" placeholder="image url" value={this.state.img} onChange={this.onChangeHandler} />
+				    </label>
+				  </div>
+                  <div className="campus-addform-element">
+                    <select className="campus-addform-button" name="student" onChange={this.handleSelection}>
+                      <option>Select student...</option>
+                      {this.props.students.filter(student => (student.campusId != this.props.campus.id)).map((student) => (
+                        <option value={student.id}>{student.name}</option>
+                      ))}
                     </select>
+				    <button className="campus-addform-button">Save Changes</button>
+				  </div>
                 </form>
-                <div className="inputErrors">
+                <div className="campus-addform-label color-red">
                 	<div>
                 		{this.state.nameIsCorrect ?
                 			"" :

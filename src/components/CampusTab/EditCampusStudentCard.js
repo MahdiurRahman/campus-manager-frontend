@@ -31,25 +31,19 @@ class EditCampusStudentCard extends Component{
     }
 
 	render(){
-	    if (this.state.removed) {
-	        return(
-                <Redirect to={"/campuses/" + this.props.selectedCampus.id +"/edit/"}/>
-            );
-	    }
+	  if (this.state.removed) {
+	      return(
+            <Redirect to={"/campuses/" + this.props.selectedCampus.id +"/edit/"}/>
+        );
+	  }
 		let thisStudentIdLink = "/students/" + this.props.student.id;
 		return(
-			<div className="studentInfo">
-				<Link to={thisStudentIdLink}>
-				<div className="studentImage">
-					<img src={this.props.student.img} alt="Student Pic" />
+			<div className="student-card">
+				<img className = "student-card-img" src={this.props.student.img} alt="Student Pic" />
+				<Link className="student-card-title" to={thisStudentIdLink}>{this.props.student.name}</Link>
+				<div className="student-card-element">
+				  <button className="campusview-buttons" onClick={() => { this.removeStudentFromCampus(this.props.student)}}>Remove from Campus</button>
 				</div>
-				<div className="studentName">
-					{this.props.student.name}
-				</div>
-				</Link>
-				<button onClick={() => {
-					this.removeStudentFromCampus(this.props.student)
-				}}>remove from campus</button>
 			</div>
 		);
 	}

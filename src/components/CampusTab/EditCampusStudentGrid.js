@@ -7,7 +7,7 @@ class CampusStudentGrid extends Component{
 		return (
 			<div className="studentsPage">
 				<div className="studentGridTop">
-					<h1>Students</h1>
+					<div className="campusview-title">Students in this Campus</div>
 				</div>
 				<div className="studentGridView">
 					{this.props.students.map(singleStudent => (

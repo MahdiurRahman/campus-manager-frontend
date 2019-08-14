@@ -33,8 +33,6 @@ class StudentCard extends Component{
 					"Not Enrolled"
 				}
 				</div>
-				
-
 			</div>
 		);
 	}
